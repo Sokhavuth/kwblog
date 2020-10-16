@@ -13,5 +13,17 @@
   </head>
   <body>
     <div id="site">
-      <header id="blog-header"></header>
-      <nav id="menu"></nav>
+      <header id="blog-header">
+        <div class="region">
+          <a href="/"><img src="/static/images/site_logo.png"/></a>
+          <a id="blog-title" href="/">{{data['blogTitle']}}</a>
+          <a>
+            <form class="search" action="/search" method="post">
+              <input type="text"  placeholder="Search.." name="query" required>
+              <button type="submit">ស្វែង​រក</button>
+            </form>
+          </a>
+          <a id="log-in" href="#">ចូលក្នុងប្រព័ន្ធ</a>
+        </div><!--region-->
+      </header>
+      <div id="header-border"></div>

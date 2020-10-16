@@ -1,12 +1,21 @@
 %include('./partials/header.tpl')
 
-<div id='main' class='main'>
-  <section id='content' class='content'>
-    content
-  </section><!--content-->
+<style>
+  #content{
+    min-height: 350px;
+    background: lavender;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+</style>
+
+<div id='main' class='main region'>
 
   %include('./partials/sidebar.tpl')
 
+  <section id='content' class='content'>
+    content
+  </section><!--content-->
 </div><!--main-->
 
 %include('./partials/footer.tpl')

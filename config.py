@@ -1,2 +1,2 @@
 #config.py
-kargs = {'blogTitle':'Khmer Web Blog Engine'}
+kargs = {'blogTitle':'គេហទំព័រ​ខ្មែរអង្គរ'}
