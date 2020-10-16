@@ -23,7 +23,7 @@
               <button type="submit">ស្វែង​រក</button>
             </form>
           </a>
-          <a id="log-in" href="#">ចូលក្នុងប្រព័ន្ធ</a>
+          <a id="log-in" href="/login">ចូលក្នុង</a>
         </div><!--region-->
       </header>
       <div id="header-border"></div>

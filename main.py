@@ -1,7 +1,7 @@
 #main.py
 import os
-from bottle import run, route, template
-from controllers import home
+from bottle import run, route
+from controllers import home, login
 from public import setup
 
 @route('/')
