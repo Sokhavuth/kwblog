@@ -1,7 +1,8 @@
 #main.py
-import os, config
+import os
 from bottle import run, route, template
 from controllers import home
+from public import setup
 
 @route('/')
 def main():
