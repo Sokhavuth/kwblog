@@ -1,12 +1,13 @@
 #main.py
-import os
-from bottle import run, route
-from controllers import home, login
+import os, config
+from bottle import run, route, template
+from controllers import login
 from public import setup
 
 @route('/')
 def main():
-  return home.index()
+  config.kargs['blogTitle'] = "គេហទំព័រ​ខ្មែរ​អង្គរ"
+  return template('home', data=config.kargs)
 
 if 'DYNO' in os.environ:
   run(host='0.0.0.0', port=os.environ.get('PORT', 9000))

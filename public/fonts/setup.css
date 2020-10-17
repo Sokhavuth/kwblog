@@ -8,6 +8,10 @@
   src: url(Koulen.ttf);
 }
 @font-face {
+  font-family: Bayon;
+  src: url(Bayon.ttf);
+}
+@font-face {
   font-family: OdorMeanChey;
   src: url(OdorMeanChey.ttf);
 }
