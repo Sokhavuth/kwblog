@@ -8,7 +8,7 @@
   #sidebar-menu li{
     list-style-type: none;
     font: 16px/1.75 Koulen;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     display: grid;
     grid-template-columns: 15% calc(85% - 10px);
     grid-gap: 10px;

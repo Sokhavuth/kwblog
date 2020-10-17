@@ -1,3 +1,4 @@
+<!--views/dashboard/home.tpl-->
 %include('./dashboard/partials/header.tpl')
 
 <style>

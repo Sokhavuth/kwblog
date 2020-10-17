@@ -1,4 +1,4 @@
-<!--views/home.tpl-->
+<!--views/daishboard/home.tpl-->
 <!DOCTYPE html>
 <html>
   <head>
