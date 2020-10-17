@@ -39,7 +39,7 @@
         .create( document.querySelector( '#editor' ), {
           toolbar: ['fontfamily', 'fontsize', 'fontcolor', 'bold', 'italic', 
           'bulletedList', 'indent', 'outdent', 'numberedList', 'link', 'blockQuote', 
-          'code', 'codeblock', 'imageinsert', 'imageUpload', 'mediaembed', 'undo', 'redo' ],
+          'code', 'codeblock', 'imageinsert', 'mediaembed', 'undo', 'redo' ],
           fontFamily: {
             options: [
               'ឧត្តមាន​ជ័យ, OdorMeanChey', 'អក្សរដៃ, HandWriting',
