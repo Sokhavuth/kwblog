@@ -3,7 +3,7 @@ import config
 from bottle import route, template, request, response, redirect
 
 def checkLogin(username, password):
-  if (username == 'admin') and (password == 'password'):
+  if (username == 'Guest') and (password == 'password'):
     return True
   else:
     return False

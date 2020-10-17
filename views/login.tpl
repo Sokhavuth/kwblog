@@ -11,7 +11,7 @@
   </head>
   <body>
     <form id='login' action="/login" method="POST">
-      <a>ឈ្មោះ​អ្នក​​ប្រើប្រាស់ៈ</a> <input type="text" name='fusername' value="admin" />
+      <a>ឈ្មោះ​អ្នក​​ប្រើប្រាស់ៈ</a> <input type="text" name='fusername' value="Guest" />
       <a>ពាក្យ​សំងាត់ៈ</a><input type="password" name="fpassword" value="password" />
       <a></a><input type='submit' />
     </form>
