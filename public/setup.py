@@ -4,6 +4,10 @@ from bottle import route, static_file
 @route('/static/scripts/<filename>')    
 def server_static(filename):
   return static_file(filename, root='./public/js')
+
+@route('/static/scripts/ckeditor/<filename>')    
+def server_static(filename):
+  return static_file(filename, root='./public/js/ckeditor')
    
 @route('/static/styles/<filename>')    
 def server_static(filename):
