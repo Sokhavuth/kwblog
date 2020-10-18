@@ -1,5 +1,7 @@
 #controllers/login.py
 import config
+from pytz import timezone
+from datetime import datetime 
 from bottle import route, template, request, response, redirect
 
 def checkLogin(username, password):
@@ -7,6 +9,12 @@ def checkLogin(username, password):
     return True
   else:
     return False
+
+def getTimeZone():
+  khtz = timezone('Asia/Phnom_Penh')
+  date = datetime.now().astimezone(tz=khtz).strftime('%d-%m-%Y')
+  time = datetime.now().astimezone(tz=khtz).strftime('%H:%M')
+  return (date, time)
 
 @route('/login', method="POST")
 def user():
@@ -24,6 +32,7 @@ def login():
   username = request.get_cookie("logged-in", secret='some-secret-key')
   if username:
     config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
+    config.kargs['datetime'] = getTimeZone()
     return template('dashboard/home', data=config.kargs)
   else:
     return template('login', data=config.kargs)

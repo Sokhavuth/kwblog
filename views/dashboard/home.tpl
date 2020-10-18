@@ -12,12 +12,42 @@
   #content .ck-editor__editable {
     min-height: 350px !important;
   }
+
   #content #post-title{
     width: 100%;
     box-sizing: border-box;
     padding: 5px 10px;
     font: 16px/1.5 Koulen;
     opacity: .4;
+  }
+
+  #content #bottombar{
+    background: #ebebeb;
+    padding: 5px;
+    border: 1px solid #bebbbb;
+  }
+
+  #content #bottombar .bottom-widget{
+    font: 14px/1.5 OdorMeanChey;
+    height: 30px;
+  }
+
+  #content #bottombar input:hover{
+    cursor: pointer;
+  }
+
+  #content #bottombar #category{
+    min-width: 80px;
+  }
+
+  #content #post-date, #content #post-time{
+    height: 24px !important;
+    font:bold 14px/1.5 'Lucida Sans' !important;
+    width: 100px;
+  }
+
+  #content #video{
+    min-width: 70px;
   }
 </style>
 
@@ -31,50 +61,19 @@
       <input id="post-title" name="post-title" type="text" placeholder="ចំណង​ជើង" />
       <textarea name="content" id="editor"></textarea>
       <div id="bottombar">
-        <input type="submit" value="Submit">
+        <input class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+        <select class="bottom-widget" id="category" name="category">
+          <option>News</option>
+          <option>Python</option>
+          <option>Node.js</option>
+          <option>PHP</option>
+        </select>
+        <input id="post-date" value="{{data['datetime'][0]}}" class="bottom-widget" type="text" name="post-date" />
+        <input id="post-time" value="{{data['datetime'][1]}}" class="bottom-widget" type="text" name="post-time" />
+        <input id="video" class="bottom-widget" type="button" value="VIDEO" />
       </div>
     </form>
-    <script>
-      ClassicEditor
-        .create( document.querySelector( '#editor' ), {
-          toolbar: ['fontfamily', 'fontsize', 'fontcolor', 'bold', 'italic', 
-          'bulletedList', 'indent', 'outdent', 'numberedList', 'link', 'blockQuote', 
-          'code', 'codeblock', 'imageinsert', 'mediaembed', 'undo', 'redo' ],
-          fontFamily: {
-            options: [
-              'ឧត្តមាន​ជ័យ, OdorMeanChey', 'អក្សរដៃ, HandWriting',
-              'គូលេន, Koulen', 'ក្រូច​ឆ្នារ, Limonf3',
-              'បាយ័ន, Bayon', 'ក្រសាំង, Rooster',
-              'មូល, Moul',
-    				  'Arial, Helvetica, sans-serif',
- 				      'Courier New, Courier, monospace',
- 				      'Georgia, serif',
- 				      'Lucida Sans Unicode, Lucida Grande, sans-serif',
- 				      'Tahoma, Geneva, sans-serif',
- 				      'Times New Roman, Times, serif',
- 				      'Trebuchet MS, Helvetica, sans-serif',
-				      'Verdana, Geneva, sans-serif',
-            ],
-            supportAllValues: true
-          },
-          
-          fontSize: {
-            options: [
-                9,
-                11,
-                13,
-                'default',
-                17,
-                19,
-                21
-            ],
-            supportAllValues: true
-          },
-        })
-        .catch( error => {
-          console.error( error );
-        });
-    </script>
+    <script src="/static/scripts/ckeditor/config.js"></script>
 
   </section><!--content-->
 </div><!--main-->
