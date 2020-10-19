@@ -21,12 +21,11 @@ def connect():
 
     cursor = conn.cursor()
 
-def createTable():
-  
+def createTable(): 
   if 'DYNO' in os.environ:
     DATABASE_URL = os.environ['DATABASE_URL']
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = sconn.cursor()
+    cursor = conn.cursor()
   else: 
     conn = psycopg2.connect(
       database="postgres", 
