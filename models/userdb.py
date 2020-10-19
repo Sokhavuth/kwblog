@@ -6,10 +6,15 @@ conn = None
 
 def connect():
   if 'DYNO' in os.environ:
-    DATABASE_URL = os.environ['DATABASE_URL']
-    global cursor, conn
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = sconn.cursor()
+    conn = psycopg2.connect(
+      database="d6i98tllo7npp9", 
+      user="pjjwnjhglhfyxq", 
+      password="5d8bd3e125eb8aa73666751efe882a4a3f6b20e4acbec574f7eb24ce57091afc", 
+      host="ec2-52-23-14-156.compute-1.amazonaws.com", 
+      port="5432"
+    )
+
+    cursor = conn.cursor()
   else: 
     conn = psycopg2.connect(
       database="postgres", 
