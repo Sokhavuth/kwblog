@@ -53,14 +53,42 @@ def createTable():
   return result
 
 def insert(*user):
-  connect()
+  if 'DYNO' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+  else: 
+    conn = psycopg2.connect(
+      database="postgres", 
+      user="postgres", 
+      password="sokhavuth", 
+      host="localhost", 
+      port="5432"
+    )
+
+    cursor = conn.cursor()
+
   cursor.execute("INSERT INTO USERS (USERNAME, PASSWORD, RIGHTS, EMAIL) VALUES %s ", (user,))
   
   conn.commit()
   conn.close()
 
 def check(username, password):
-  connect()
+  if 'DYNO' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+  else: 
+    conn = psycopg2.connect(
+      database="postgres", 
+      user="postgres", 
+      password="sokhavuth", 
+      host="localhost", 
+      port="5432"
+    )
+
+    cursor = conn.cursor()
+    
   cursor.execute("SELECT USERNAME, PASSWORD FROM USERS WHERE USERNAME = '"+ username + "' and PASSWORD = '" + password + "' LIMIT 1")
   result = cursor.fetchone()
   if result:
