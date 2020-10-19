@@ -25,7 +25,7 @@
 <section id='sidebar' class="sidebar">
   <nav>
     <ul id="sidebar-menu">
-      <li><img src="/static/images/posting.png" /><a href="#">ចុះ​ផ្សាយ</a></li>
+      <li><img src="/static/images/posting.png" /><a href="/login">ចុះ​ផ្សាយ</a></li>
       <li><img src="/static/images/categorizing.png" /><a href="#">បង្កើត​ជំពូក</a></li>
       <li><img src="/static/images/paging.png" /><a href="#">បង្កើត​ទំព័រ</a></li>
       <li><img src="/static/images/multimedia.png" /><a href="#">ចំលង​ឯកសារ</a></li>

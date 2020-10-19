@@ -18,6 +18,9 @@
     box-sizing: border-box;
     padding: 5px 10px;
     font: 16px/1.5 Koulen;
+  }
+
+  #content ::placeholder{
     opacity: .4;
   }
 
@@ -46,9 +49,6 @@
     width: 100px;
   }
 
-  #content #video{
-    min-width: 70px;
-  }
 </style>
 
 <div  id='main' class='main region'>
@@ -58,21 +58,21 @@
   <section id='content' class='content'>
     
     <form action="/posting" method="post">
-      <input id="post-title" name="post-title" type="text" placeholder="ចំណង​ជើង" />
+      <input id="post-title" name="fpost-title" type="text" placeholder="ចំណង​ជើង" required />
       <textarea name="content" id="editor"></textarea>
       <div id="bottombar">
         <input class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
-        <select class="bottom-widget" id="category" name="category">
+        <select class="bottom-widget" id="category" name="fcategory">
           <option>News</option>
           <option>Python</option>
           <option>Node.js</option>
           <option>PHP</option>
         </select>
-        <input id="post-date" value="{{data['datetime'][0]}}" class="bottom-widget" type="text" name="post-date" />
-        <input id="post-time" value="{{data['datetime'][1]}}" class="bottom-widget" type="text" name="post-time" />
-        <input id="video" class="bottom-widget" type="button" value="VIDEO" />
+        <input id="post-date" value="{{data['datetime'][0]}}" class="bottom-widget" type="text" name="fpost-date" />
+        <input id="post-time" value="{{data['datetime'][1]}}" class="bottom-widget" type="text" name="fpost-time" />
       </div>
     </form>
+    
     <script src="/static/scripts/ckeditor/config.js"></script>
 
   </section><!--content-->
