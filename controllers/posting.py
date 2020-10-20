@@ -16,7 +16,7 @@ def posting():
     posttime = request.forms.getunicode('fpost-time')
     category = request.forms.getunicode('fcategory')
     content = request.forms.getunicode('fcontent')
-  
+    
     try:
       postdate = datetime.datetime.strptime(postdate, "%d-%m-%Y")
     except ValueError:

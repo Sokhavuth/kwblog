@@ -55,7 +55,7 @@ def insert(*post):
   conn.commit()
   conn.close()
 
-def select(amount):
+def select(amount, id=None):
   createTable()
 
   if 'DYNO' in os.environ:
@@ -72,8 +72,11 @@ def select(amount):
     )
 
     cursor = conn.cursor()
-
-  cursor.execute("SELECT * FROM POST ORDER BY POSTDATE, POSTTIME DESC LIMIT " + str(amount))
+  if id:
+    cursor.execute("SELECT * FROM POST WHERE ID = '" + str(id) +"'")
+  else:
+    cursor.execute("SELECT * FROM POST ORDER BY POSTDATE, POSTTIME DESC LIMIT " + str(amount))
+    
   result = cursor.fetchall()
   return result
 

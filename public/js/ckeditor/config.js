@@ -1,5 +1,8 @@
+var myEditor;
+
 ClassicEditor
         .create( document.querySelector( '#editor' ), {
+          
           toolbar: ['fontfamily', 'fontsize', 'fontcolor', 'bold', 'italic', 
           'bulletedList', 'indent', 'outdent', 'numberedList', 'link', 'blockQuote', 
           'code', 'codeblock', 'imageinsert', 'mediaembed', 'undo', 'redo' ],
@@ -34,6 +37,10 @@ ClassicEditor
             supportAllValues: true
           },
         })
-        .catch( error => {
-          console.error( error );
+        .then( editor => {
+          console.log( 'Editor was initialized', editor );
+          myEditor = editor;
+        })
+        .catch( err => {
+          console.error( err.stack );
         });

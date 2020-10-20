@@ -50,7 +50,6 @@
           %end
         %end
         
-        
       </footer>
     </div><!--site-->
   </body>

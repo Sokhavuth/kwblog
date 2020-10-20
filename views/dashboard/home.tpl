@@ -61,7 +61,7 @@
       <input id="post-title" name="fpost-title" type="text" placeholder="ចំណង​ជើង" required />
       <textarea name="fcontent" id="editor"></textarea>
       <div id="bottombar">
-        <input class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+        <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
         <select class="bottom-widget" id="category" name="fcategory">
           <option>News</option>
           <option>Python</option>
