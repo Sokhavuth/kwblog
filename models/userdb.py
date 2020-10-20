@@ -1,25 +1,6 @@
+#models/userdb.py
 import os
 import psycopg2
-
-cursor = None
-conn = None
-
-def connect():
-  if 'DYNO' in os.environ:
-    DATABASE_URL = os.environ['DATABASE_URL']
-    global cursor, conn
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = sconn.cursor()
-  else: 
-    conn = psycopg2.connect(
-      database="postgres", 
-      user="postgres", 
-      password="sokhavuth", 
-      host="localhost", 
-      port="5432"
-    )
-
-    cursor = conn.cursor()
 
 def createTable(): 
   if 'DYNO' in os.environ:
@@ -88,7 +69,7 @@ def check(username, password):
     )
 
     cursor = conn.cursor()
-    
+
   cursor.execute("SELECT USERNAME, PASSWORD FROM USERS WHERE USERNAME = '"+ username + "' and PASSWORD = '" + password + "' LIMIT 1")
   result = cursor.fetchone()
   if result:

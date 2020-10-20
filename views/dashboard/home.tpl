@@ -43,7 +43,7 @@
     min-width: 80px;
   }
 
-  #content #post-date, #content #post-time{
+  #content .post-time{
     height: 24px !important;
     font:bold 14px/1.5 'Lucida Sans' !important;
     width: 100px;
@@ -59,7 +59,7 @@
     
     <form action="/posting" method="post">
       <input id="post-title" name="fpost-title" type="text" placeholder="ចំណង​ជើង" required />
-      <textarea name="content" id="editor"></textarea>
+      <textarea name="fcontent" id="editor"></textarea>
       <div id="bottombar">
         <input class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
         <select class="bottom-widget" id="category" name="fcategory">
@@ -68,10 +68,13 @@
           <option>Node.js</option>
           <option>PHP</option>
         </select>
-        <input id="post-date" value="{{data['datetime'][0]}}" class="bottom-widget" type="text" name="fpost-date" />
-        <input id="post-time" value="{{data['datetime'][1]}}" class="bottom-widget" type="text" name="fpost-time" />
+        <input id="post-date" value="{{data['datetime'][0]}}" class="bottom-widget post-time" type="text" name="fpost-date" />
+        <input id="post-time" value="{{data['datetime'][1]}}" class="bottom-widget post-time" type="text" name="fpost-time" />
+        <input disabled style="background:white;text-align:center;" type='text' value="{{data['author']}}" id="post-author" class="bottom-widget post-time" />
       </div>
     </form>
+    <div style="text-align: center;">{{data["message"]}}</div>
+    %data['message'] = ""
     
     <script src="/static/scripts/ckeditor/config.js"></script>
 

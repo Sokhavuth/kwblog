@@ -4,6 +4,7 @@ from pytz import timezone
 from datetime import datetime 
 from bottle import route, template, request, response, redirect
 from models import userdb
+from models import postdb
 
 def checkLogin(username, password):
   if (username == 'Guest') and (password == 'password'):
@@ -16,7 +17,7 @@ def checkLogin(username, password):
 def getTimeZone():
   khtz = timezone('Asia/Phnom_Penh')
   date = datetime.now().astimezone(tz=khtz).strftime('%d-%m-%Y')
-  time = datetime.now().astimezone(tz=khtz).strftime('%H:%M')
+  time = datetime.now().astimezone(tz=khtz).strftime('%H:%M:%S')
   return (date, time)
 
 @route('/signup', method="POST")
@@ -47,8 +48,10 @@ def login():
   if not user:
     return template('dashboard/signup', data=config.kargs)
   elif username:
+    config.kargs['author'] = username
     config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
     config.kargs['datetime'] = getTimeZone()
+    config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
     return template('dashboard/home', data=config.kargs)
   else:
     return template('login', data=config.kargs)

@@ -1,41 +1,101 @@
+#models/postdb.py
 import os
 import psycopg2
 
-class Postdb():
-  def __init__(self):
-    if 'DYNO' in os.environ:
-      DATABASE_URL = os.environ['DATABASE_URL']
-      self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-      self.cursor = self.conn.cursor()
-    else: 
-      self.conn = psycopg2.connect(
-        database="postgres", 
-        user="postgres", 
-        password="sokhavuth", 
-        host="localhost", 
-        port="5432"
-      )
+def createTable(): 
+  if 'DYNO' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+  else: 
+    conn = psycopg2.connect(
+      database="postgres", 
+      user="postgres", 
+      password="sokhavuth", 
+      host="localhost", 
+      port="5432"
+    )
 
-      self.cursor = self.conn.cursor()
+    cursor = conn.cursor()
 
-  def createTable(self):
-    SQL = '''CREATE TABLE IF NOT EXISTS POST(
-      ID INT PRIMARY KEY NOT NULL,
-      TITLE TEXT,
-      POSTDATE DATE,
-      POSTTIME TIME,
-      AUTHOR TEXT,
-      CONTENT TEXT,
-      CATEGORY TEXT
-    )'''
+  SQL = '''CREATE TABLE IF NOT EXISTS POST(
+  ID TEXT,
+  TITLE TEXT,
+  AUTHOR TEXT,
+  POSTDATE DATE,
+  POSTTIME TIME,
+  CATEGORY TEXT,
+  CONTENT TEXT
+  )'''
 
-    self.cursor.execute(SQL)
-    self.cursor.execute("select version()")
-    data = self.cursor.fetchone()
-    print("Connection established to: ", data)
+  cursor.execute(SQL)
+  
+  conn.commit()
+  conn.close()
 
-    self.conn.commit()
-    self.conn.close()
+def insert(*post):
+  createTable()
+  if 'DYNO' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+  else: 
+    conn = psycopg2.connect(
+      database="postgres", 
+      user="postgres", 
+      password="sokhavuth", 
+      host="localhost", 
+      port="5432"
+    )
 
+    cursor = conn.cursor()
 
-postdb = Postdb()
+  cursor.execute("INSERT INTO POST (ID, TITLE, AUTHOR, POSTDATE, POSTTIME, CATEGORY, CONTENT) VALUES %s ", (post,))
+  
+  conn.commit()
+  conn.close()
+
+def select(amount):
+  createTable()
+
+  if 'DYNO' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+  else: 
+    conn = psycopg2.connect(
+      database="postgres", 
+      user="postgres", 
+      password="sokhavuth", 
+      host="localhost", 
+      port="5432"
+    )
+
+    cursor = conn.cursor()
+
+  cursor.execute("SELECT * FROM POST ORDER BY POSTDATE, POSTTIME DESC LIMIT " + str(amount))
+  result = cursor.fetchall()
+  return result
+
+def check(username):
+  if 'DYNO' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+  else: 
+    conn = psycopg2.connect(
+      database="postgres", 
+      user="postgres", 
+      password="sokhavuth", 
+      host="localhost", 
+      port="5432"
+    )
+
+    cursor = conn.cursor()
+
+  cursor.execute("SELECT USERNAME FROM USERS WHERE USERNAME = '"+ username + "' LIMIT 1")
+  result = cursor.fetchone()
+  if result:
+    return True
+  else:
+    return False

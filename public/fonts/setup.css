@@ -27,3 +27,7 @@
   font-family: HandWriting;
   src: url(HandWriting.ttf);
 }
+@font-face {
+  font-family: Oswald;
+  src: url(Oswald.ttf);
+}

@@ -1,4 +1,4 @@
-<!--views/login.tpl-->
+<!--views/signup.tpl-->
 <!DOCTYPE html>
 <html>
   <head>

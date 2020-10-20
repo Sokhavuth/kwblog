@@ -1,7 +1,7 @@
 #main.py
 import os, config
 from bottle import run, route, template
-from controllers import login, post
+from controllers import login, posting, post, author
 from public import setup
 
 @route('/')
