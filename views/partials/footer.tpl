@@ -63,6 +63,12 @@
           var width = $('footer .post-thumb img').css('width');
           var height = parseInt(width) / 16 * 9;
           $('footer .post-thumb').css({'height':height});
+
+          $(window).resize(function(){
+            var width = $('footer .post-thumb img').css('width');
+            var height = parseInt(width) / 16 * 9;
+            $('footer .post-thumb').css({'height':height});
+          });
         </script>
       </footer>
     </div><!--site-->
