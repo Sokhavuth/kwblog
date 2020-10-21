@@ -10,7 +10,7 @@
     font: 16px/1.75 Koulen, Oswald;
     margin-bottom: 20px;
     display: grid;
-    grid-template-columns: 15% calc(85% - 10px);
+    grid-template-columns: 16% calc(84% - 10px);
     grid-gap: 10px;
     align-items: center;
   }
