@@ -16,8 +16,8 @@
     <div id="site">
       <header id="blog-header">
         <div class="region">
-          <a><img src="/static/images/site_logo.png"/></a>
-          <a id="blog-title">{{data['blogTitle']}}</a>
+          <a href="/login"><img src="/static/images/site_logo.png"/></a>
+          <a id="blog-title" href="/login">{{data['blogTitle']}}</a>
           <style>
             #top-menu li{
               list-style-type: none;

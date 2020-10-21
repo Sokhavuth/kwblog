@@ -15,8 +15,8 @@
     <div id="site">
       <header id="blog-header">
         <div class="region">
-          <a><img src="/static/images/site_logo.png"/></a>
-          <a id="blog-title">{{data['blogTitle']}}</a>
+          <a href="/"><img src="/static/images/site_logo.png"/></a>
+          <a id="blog-title" href="/">{{data['blogTitle']}}</a>
           <a>
             <form class="search" action="/search" method="post">
               <input type="text"  placeholder="Search.." name="query" required>
