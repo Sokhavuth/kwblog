@@ -22,7 +22,7 @@
   .post-panel .post-thumb img{
     width: 100%;
     float: left;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   .post-panel .post-title{
     text-align: left;
