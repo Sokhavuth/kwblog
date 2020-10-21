@@ -19,8 +19,13 @@
   .post-panel:last-child{
     margin-bottom: 0;
   }
+  .post-panel .post-thumb{
+    overflow: hidden;
+    display: block;
+  }
   .post-panel .post-thumb img{
-    max-width: 100%;
+    width: 100%;
+    min-height: 100%;
     float: left;
   }
   .post-panel .post-title{
@@ -29,6 +34,7 @@
   }
   .post-panel .post-author{
     text-align: right;
+    font: bold 16px/1.5 'Lucida Sans';
   }
   .post-panel .post-date{
     font: bold 14px/1.5 'Lucida Sans';
@@ -49,7 +55,11 @@
             </div>
           %end
         %end
-        
+        <script>
+          var width = $('.post-thumb').css('width');
+          var height = parseInt(width) / 16 * 9;
+          $('.post-thumb').css('height', height);
+        </script>
       </footer>
     </div><!--site-->
   </body>

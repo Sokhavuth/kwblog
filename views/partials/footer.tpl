@@ -19,8 +19,13 @@
   .post-panel:last-child{
     margin-bottom: 0;
   }
+  .post-panel .post-thumb{
+    display: block;
+    overflow: hidden;
+  }
   .post-panel .post-thumb img{
     width: 100%;
+    min-height: 100%;
     float: left;
     margin-bottom: 5px;
   }
@@ -46,15 +51,20 @@
           %for v in range(len(data['posts'])):
             <div class="post-outer">
               <a class="post-thumb" href="/post/{{data['posts'][v][0]}}"><img src="{{data['thumbs'][v]}}" /></a>
-              <div class="title-wrapper">
+              
                 <a class="post-title" href="/post/{{data['posts'][v][0]}}">{{data['posts'][v][1]}}</a>
                 %postdate = data['posts'][v][3].strftime("%d-%m-%Y")
                 <div class="post-date">{{postdate}}</div>
-              </div>
+              
             </div>
           %end
         %end
         </div>
+        <script>
+          var width = $('footer .post-thumb img').css('width');
+          var height = parseInt(width) / 16 * 9;
+          $('footer .post-thumb').css({'height':height});
+        </script>
       </footer>
     </div><!--site-->
   </body>
