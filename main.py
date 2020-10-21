@@ -1,12 +1,15 @@
 #main.py
-import os, config
+import os, config, lib
 from bottle import run, route, template
 from controllers import login, posting, post, author
+from models import postdb
 from public import setup
 
 @route('/')
 def main():
   config.kargs['blogTitle'] = "គេហទំព័រ​ខ្មែរ​អង្គរ"
+  config.kargs['posts'] = postdb.select(config.kargs['frontPagePostLimit'])
+  config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
   return template('home', data=config.kargs)
 
 if 'DYNO' in os.environ:

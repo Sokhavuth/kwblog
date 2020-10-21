@@ -1,5 +1,5 @@
 #controllers/login.py
-import config
+import config, lib
 from pytz import timezone
 from datetime import datetime 
 from bottle import route, template, request, response, redirect
@@ -52,6 +52,7 @@ def login():
     config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
     config.kargs['datetime'] = getTimeZone()
     config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
+    config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
     return template('dashboard/home', data=config.kargs)
   else:
     return template('login', data=config.kargs)

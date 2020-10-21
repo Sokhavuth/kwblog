@@ -36,16 +36,16 @@
 </style>
       <footer class="footer region">
         %if data['posts']:
-          %for post in data['posts']:
+          %for v in range(len(data['posts'])):
             <div class="post-panel">
-              <a class="post-thumb" href="/post/{{post[0]}}"><img src="/static/images/nopicture.jpg" /></a>
+              <a class="post-thumb" href="/post/{{data['posts'][v][0]}}"><img src="{{data['thumbs'][v]}}" /></a>
               <div class="title-wrapper">
-                <a class="post-title" href="/post/{{post[0]}}">{{post[1]}}</a>
-                %postdate = post[3].strftime("%d-%m-%Y")
+                <a class="post-title" href="/post/{{data['posts'][v][0]}}">{{data['posts'][v][1]}}</a>
+                %postdate = data['posts'][v][3].strftime("%d-%m-%Y")
                 <div class="post-date">{{postdate}}</div>
-                <a class="post-category">{{post[5]}}</a>
+                <a class="post-category">{{data['posts'][v][5]}}</a>
               </div>
-              <a class="post-author" href="/author/{{post[2]}}">{{post[2]}}</a>
+              <a class="post-author" href="/author/{{data['posts'][v][2]}}">{{data['posts'][v][2]}}</a>
             </div>
           %end
         %end
