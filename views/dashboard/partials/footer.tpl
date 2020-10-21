@@ -10,7 +10,7 @@
   .post-panel{
     padding: 10px;
     background: rgb(247, 247, 248);
-    font: 16px/1.5 Limonf3, Oswald;
+    font: 16px/1.5 Oswald, Limonf3;
     display: grid;
     grid-template-columns: 150px auto 15%;
     grid-gap: 10px;

@@ -1,6 +1,5 @@
 <!--views/post.tpl-->
 %include('./partials/header.tpl')
-
 <style>
   #content{
     min-height: 350px;
@@ -13,7 +12,7 @@
     padding: 20px;
   }
   #content .post-title{
-    font: 20px/1.5 Limonf3, Oswald;
+    font: 20px/1.5 Oswald, Limonf3;
   }
   #content .post-author{
     font: bold 14px/1.5 "Lucida Sans";
