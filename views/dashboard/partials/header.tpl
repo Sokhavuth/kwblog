@@ -1,4 +1,4 @@
-<!--views/daishboard/home.tpl-->
+<!--views/dashboard/header.tpl-->
 <!DOCTYPE html>
 <html>
   <head>

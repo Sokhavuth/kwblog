@@ -9,6 +9,10 @@ def post(id):
   config.kargs['post'] = postdb.select(1, id)
   config.kargs['posts'] = postdb.select(config.kargs['frontPagePostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
+  author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
+  if author:
+    config.kargs['showEdit'] = True
+
   return template('post', data=config.kargs)
 
 @route('/post/delete/<id:int>')
@@ -21,7 +25,10 @@ def delete(id):
 
 @route('/post/edit/<id:int>')
 def edit(id):
-  config.kargs['post'] = postdb.select(1, id)
-  config.kargs['edit'] = True
-  return template('dashboard/home', data=config.kargs)
+  author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
+  if ((author != "Guest") and postdb.check(author)):
+    config.kargs['post'] = postdb.select(1, id)
+    config.kargs['edit'] = True
+    return template('dashboard/home', data=config.kargs)
   
+  redirect('/login')

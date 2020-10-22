@@ -32,6 +32,21 @@
   #content .post-body img{
     width: 100%;
   }
+  #content .post-author{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  #content .post-author span{
+    margin-bottom: 20px;
+  }
+  #content .edit-icon{
+    text-align: right;
+    position: relative;
+    top: -15px;
+  }
+  #content .edit-icon img{
+    width: 35px;
+  }
 </style>
 
 <div id='main' class='main region'>
@@ -45,7 +60,13 @@
         <span class="post-title">{{data['post'][0][1]}}</span>
         <span class="post-date">{{data['post'][0][3].strftime("%d-%m-%Y")}}</span>
       </div>
-      <div class="post-author">{{data['post'][0][2]}}</div>
+      <div class="post-author">
+        <span>{{data['post'][0][2]}}</span>
+        %if 'showEdit' in data:
+        <a class="edit-icon" href="/post/edit/{{data['post'][0][0]}}"><img src="/static/images/edit.png"/></a>
+        % del data['showEdit']
+        %end
+      </div>
 
       <div class="post-body">{{!data['post'][0][6]}}</div>
       %end
