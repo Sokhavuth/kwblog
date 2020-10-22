@@ -72,7 +72,7 @@ def select(amount, id=None):
     )
 
     cursor = conn.cursor()
-  if id:
+  if id and (amount == 1):
     cursor.execute("SELECT * FROM POST WHERE ID = '" + str(id) +"'")
   else:
     cursor.execute("SELECT * FROM POST ORDER BY CTID DESC LIMIT " + str(amount))
@@ -102,3 +102,24 @@ def check(username):
     return True
   else:
     return False
+
+def delete(id):
+  if 'DYNO' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+  else: 
+    conn = psycopg2.connect(
+      database="postgres", 
+      user="postgres", 
+      password="sokhavuth", 
+      host="localhost", 
+      port="5432"
+    )
+
+    cursor = conn.cursor()
+
+  cursor.execute("DELETE FROM POST WHERE ID = '" + str(id) + "'")
+
+  conn.commit()
+  conn.close()

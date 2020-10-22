@@ -58,6 +58,24 @@
   <section id='content' class='content'>
     
     <form action="/posting" method="post">
+      %if 'edit' in data:
+      <input id="post-title" name="fpost-title" value="{{data['post'][0][1]}}" type="text" placeholder="ចំណង​ជើង" required />
+      <textarea name="fcontent" id="editor">{{data['post'][0][6]}}</textarea>
+      <div id="bottombar">
+        <input id="submit" class="bottom-widget" type="submit" value="ចុះ​ផ្សាយ">
+        <select class="bottom-widget" id="category" name="fcategory">
+          <option>News</option>
+          <option>Python</option>
+          <option>Node.js</option>
+          <option>PHP</option>
+        </select>
+        <script>$("#category").val("{{data['post'][0][5]}}").change();</script>
+        <input id="post-date" value="{{data['post'][0][3].strftime('%d-%m-%Y')}}" class="bottom-widget post-time" type="text" name="fpost-date" />
+        <input id="post-time" value="{{data['post'][0][4].strftime('%H:%M:%S')}}" class="bottom-widget post-time" type="text" name="fpost-time" />
+        <input disabled style="background:white;text-align:center;" type='text' value="{{data['post'][0][2]}}" id="post-author" class="bottom-widget post-time" />
+      </div>
+      % del data['edit']
+      %else:
       <input id="post-title" name="fpost-title" type="text" placeholder="ចំណង​ជើង" required />
       <textarea name="fcontent" id="editor"></textarea>
       <div id="bottombar">
@@ -72,6 +90,7 @@
         <input id="post-time" value="{{data['datetime'][1]}}" class="bottom-widget post-time" type="text" name="fpost-time" />
         <input disabled style="background:white;text-align:center;" type='text' value="{{data['author']}}" id="post-author" class="bottom-widget post-time" />
       </div>
+      %end
     </form>
     <div style="text-align: center;">{{data["message"]}}</div>
     %data['message'] = ""

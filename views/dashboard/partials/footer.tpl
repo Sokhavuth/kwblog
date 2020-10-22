@@ -35,6 +35,20 @@
   .post-panel .post-author{
     text-align: right;
     font: bold 16px/1.5 'Lucida Sans';
+    display: block;
+  }
+  .post-panel .author-outer img{
+    width: 35px;
+    float: right;
+    visibility: hidden;
+  }
+  .post-panel:hover > .author-outer img {
+    visibility: visible;
+  }
+  .post-panel .author-outer .delete{
+    width: 28px;
+    margin-top: 2.5px;
+    margin-left: 10px;
   }
   .post-panel .post-date{
     font: bold 14px/1.5 'Lucida Sans';
@@ -51,7 +65,11 @@
                 <div class="post-date">{{postdate}}</div>
                 <a class="post-category">{{data['posts'][v][5]}}</a>
               </div>
-              <a class="post-author" href="/author/{{data['posts'][v][2]}}">{{data['posts'][v][2]}}</a>
+              <div class="author-outer">
+                <a class="post-author" href="/author/{{data['posts'][v][2]}}">{{data['posts'][v][2]}}</a>
+                <a href="/post/delete/{{data['posts'][v][0]}}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>
+                <a href="/post/edit/{{data['posts'][v][0]}}"><img title="Edit" src="/static/images/edit.png" /></a>
+              </div>
             </div>
           %end
         %end
