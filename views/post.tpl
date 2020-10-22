@@ -11,6 +11,10 @@
     min-height: 350px;
     padding: 20px;
   }
+  #content .post-header{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
   #content .post-title{
     font: 20px/1.5 Oswald, Limonf3;
   }
@@ -20,6 +24,8 @@
   }
   #content .post-date{
     float: right;
+    text-align: right;
+    width: 100% !important;
     font: bold 18px/1.5 'Lucida Sans';
   }
   #content .post-body{
@@ -57,8 +63,8 @@
     <article class="post">
       %if data['post']:
       <div class='post-header'>
-        <span class="post-title">{{data['post'][0][1]}}</span>
-        <span class="post-date">{{data['post'][0][3].strftime("%d-%m-%Y")}}</span>
+        <div class="post-title">{{data['post'][0][1]}}</div>
+        <div class="post-date">{{data['post'][0][3].strftime("%d-%m-%Y")}}</div>
       </div>
       <div class="post-author">
         <span>{{data['post'][0][2]}}</span>
