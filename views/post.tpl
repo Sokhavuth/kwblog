@@ -47,7 +47,6 @@
   #content .post-author .icon-outer{
     text-align: right;
   }
-  
   #content .edit-icon img,
   #content .delete-icon img{
     width: 35px;
@@ -78,7 +77,7 @@
           <a class="edit-icon" href="/post/edit/{{data['post'][0][0]}}"><img src="/static/images/edit.png"/></a>
           <a class="delete-icon" href="/post/delete/{{data['post'][0][0]}}"><img src="/static/images/delete.png"/></a>
         </div>
-        % del data['showEdit']
+        %del data['showEdit']
         %end
       </div>
 

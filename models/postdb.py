@@ -75,7 +75,7 @@ def select(amount, id=None):
   if id and (amount == 1):
     cursor.execute("SELECT * FROM POST WHERE ID = '" + str(id) +"'")
   else:
-    cursor.execute("SELECT * FROM POST ORDER BY POSTDATE DESC LIMIT " + str(amount))
+    cursor.execute("SELECT * FROM POST ORDER BY POSTDATE DESC, POSTTIME DESC LIMIT " + str(amount))
     
   result = cursor.fetchall()
   return result

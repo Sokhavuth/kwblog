@@ -29,8 +29,7 @@ def posting():
     content = request.forms.getunicode('fcontent')
 
     try:
-      postdate = postdate + ' ' + posttime
-      postdate = datetime.datetime.strptime(postdate, "%d-%m-%Y %H:%M:%S")
+      postdate = datetime.datetime.strptime(postdate, "%d-%m-%Y")
     except ValueError:
       config.kargs['message'] = 'ទំរង់​កាលបរិច្ឆេទ​មិន​ត្រឹមត្រូវ!'
       return template('dashboard/home', data=config.kargs)
