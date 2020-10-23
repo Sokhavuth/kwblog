@@ -1,4 +1,4 @@
-<!--views/dashboard/footer.tpl-->
+<!--views/partials/footer.tpl-->
 <style>
   
 </style>
@@ -20,13 +20,12 @@
         </div>
         <script>
           function paginate(){
+            $('#pagination img').attr('src', '/static/images/loading.gif');
             $.get("/paginate", function(data, status){
-              if(status && data.json){
+              if((status=='success') && data.json){
                 var posts = data.json;
                 var thumbs = data.thumbs;
                 var html = '';
-
-                $('#pagination img').attr('src', '/static/images/loading.gif');
 
                 for(var index in posts){
                   html += '<div class="post-outer">';
@@ -37,12 +36,14 @@
                 }
 
                 $('.post-panel').append(html);
-                $('#pagination img').attr('src', '/static/images/load-more.png');
 
                 var width = $('footer .post-thumb img').css('width');
                 var height = parseInt(width) / 16 * 9;
                 $('footer .post-thumb').css({'height':height});
               }
+
+              $('#pagination img').attr('src', '/static/images/load-more.png');
+
             });
           }
 

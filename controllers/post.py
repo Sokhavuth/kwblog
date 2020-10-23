@@ -61,6 +61,9 @@ def delete(id):
 def edit(id):
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if ((author != "Guest") and postdb.check(author)):
+    config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
+    config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
+    config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
     config.kargs['post'] = postdb.select(1, id)
     config.kargs['edit'] = True
     config.kargs['postId'] = id
