@@ -67,3 +67,23 @@ def edit(id):
     return template('dashboard/home', data=config.kargs)
   
   redirect('/login')
+
+@route('/paginate')
+def paginate():
+  posts = postdb.select(config.kargs['frontPagePostLimit'], page=config.kargs['page'])
+  
+  def toString(post):
+    post[3] = post[3].strftime('%d-%m-%Y')
+    post[4] = post[4].strftime('%H:%M:%S')
+
+  if posts:
+    config.kargs['page'] += 1
+    posts = [list(obj) for obj in posts ]
+
+    [toString(obj) for obj in posts]
+    thumbs = lib.getPostThumbs(posts)
+  
+    return {'json':posts, 'thumbs':thumbs}
+  else:
+    return {'json':0}
+  

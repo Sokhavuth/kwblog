@@ -10,6 +10,7 @@ def main():
   config.kargs['blogTitle'] = "គេហទំព័រ​ខ្មែរ​អង្គរ"
   config.kargs['posts'] = postdb.select(config.kargs['frontPagePostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
+  config.kargs['page'] = 1
   return template('home', data=config.kargs)
 
 if 'DYNO' in os.environ:

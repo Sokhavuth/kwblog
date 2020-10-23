@@ -47,7 +47,7 @@
   }
   .post-panel .author-outer .delete{
     width: 28px;
-    margin-top: 2.5px;
+    margin-top: 4.5px;
     margin-left: 10px;
   }
   .post-panel .post-date{
