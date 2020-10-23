@@ -74,7 +74,7 @@
         <input id="post-time" value="{{data['post'][0][4].strftime('%H:%M:%S')}}" class="bottom-widget post-time" type="text" name="fpost-time" />
         <input disabled style="background:white;text-align:center;" type='text' value="{{data['post'][0][2]}}" id="post-author" class="bottom-widget post-time" />
       </div>
-      % del data['edit']
+      %del data['edit']
       %else:
       <input id="post-title" name="fpost-title" type="text" placeholder="ចំណង​ជើង" required />
       <textarea name="fcontent" id="editor"></textarea>

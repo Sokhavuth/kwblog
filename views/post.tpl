@@ -41,17 +41,22 @@
   #content .post-author{
     display: grid;
     grid-template-columns: auto auto;
-  }
-  #content .post-author span{
     margin-bottom: 20px;
+    align-items: center;
   }
-  #content .edit-icon{
+  #content .post-author .icon-outer{
     text-align: right;
-    position: relative;
-    top: -15px;
   }
-  #content .edit-icon img{
+  
+  #content .edit-icon img,
+  #content .delete-icon img{
     width: 35px;
+  }
+  #content .delete-icon img{
+    width: 28px;
+    margin-left: 5px;
+    position: relative;
+    top: -3.5px
   }
 </style>
 
@@ -61,7 +66,7 @@
 
   <section id='content' class='content'>
     <article class="post">
-      %if data['post']:
+      %if 'post' in data:
       <div class='post-header'>
         <div class="post-title">{{data['post'][0][1]}}</div>
         <div class="post-date">{{data['post'][0][3].strftime("%d-%m-%Y")}}</div>
@@ -69,7 +74,10 @@
       <div class="post-author">
         <span>{{data['post'][0][2]}}</span>
         %if 'showEdit' in data:
-        <a class="edit-icon" href="/post/edit/{{data['post'][0][0]}}"><img src="/static/images/edit.png"/></a>
+        <div class="icon-outer">
+          <a class="edit-icon" href="/post/edit/{{data['post'][0][0]}}"><img src="/static/images/edit.png"/></a>
+          <a class="delete-icon" href="/post/delete/{{data['post'][0][0]}}"><img src="/static/images/delete.png"/></a>
+        </div>
         % del data['showEdit']
         %end
       </div>

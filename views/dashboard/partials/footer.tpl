@@ -55,7 +55,7 @@
   }
 </style>
       <footer class="footer region">
-        %if data['posts']:
+        %if 'posts' in data:
           %for v in range(len(data['posts'])):
             <div class="post-panel">
               <a class="post-thumb" href="/post/{{data['posts'][v][0]}}"><img src="{{data['thumbs'][v]}}" /></a>
