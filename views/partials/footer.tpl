@@ -21,7 +21,7 @@
         <script>
           function paginate(){
             $('#pagination img').attr('src', '/static/images/loading.gif');
-            $.get("/paginate", function(data, status){
+            $.get("/paginate/frontEnd", function(data, status){
               if((status=='success') && data.json){
                 var posts = data.json;
                 var thumbs = data.thumbs;

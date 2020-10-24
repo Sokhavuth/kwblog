@@ -62,19 +62,25 @@ def delete(id):
 def edit(id):
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if ((author != "Guest") and postdb.check(author)):
-    config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
+    config.kargs['blogTitle'] = "ទំព័រ​កែ​តំរូវ"
     config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
     config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
     config.kargs['post'] = postdb.select(1, id)
     config.kargs['edit'] = True
     config.kargs['postId'] = id
+    config.kargs['page'] = 1
     return template('dashboard/home', data=config.kargs)
   
   redirect('/login')
 
-@route('/paginate')
-def paginate():
-  posts = postdb.select(config.kargs['frontPagePostLimit'], page=config.kargs['page'])
+@route('/paginate/<place>')
+def paginate(place):
+  if place == "frontEnd":
+    postLimit = config.kargs['frontPagePostLimit']
+  else:
+    postLimit = config.kargs['dashboardPostLimit']
+
+  posts = postdb.select(postLimit, page=config.kargs['page'])
   
   def toString(post):
     post[3] = post[3].strftime('%d-%m-%Y')
