@@ -66,9 +66,9 @@
         %if 'posts' in data:
           %for v in range(len(data['posts'])):
             <div class="post-panel">
-              <a class="post-thumb" target="_blank" href="/post/{{data['posts'][v][0]}}"><img src="{{data['thumbs'][v]}}" /></a>
+              <a class="post-thumb" ><img src="{{data['thumbs'][v]}}" /></a>
               <div class="title-wrapper">
-                <a class="post-title" target="_blank" href="/post/{{data['posts'][v][0]}}">{{data['posts'][v][1]}}</a>
+                <a class="post-title" >{{data['posts'][v][1]}}</a>
                 %postdate = data['posts'][v][3].strftime("%d-%m-%Y")
                 <div class="post-date">{{postdate}}</div>
               </div>
