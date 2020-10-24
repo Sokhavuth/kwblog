@@ -9,6 +9,7 @@ def post(id):
   config.kargs['post'] = postdb.select(1, id)
   config.kargs['posts'] = postdb.select(config.kargs['frontPagePostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
+  config.kargs['page'] = 1
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if author:
     config.kargs['showEdit'] = True

@@ -53,6 +53,7 @@ def login():
     config.kargs['datetime'] = getTimeZone()
     config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
     config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
+    config.kargs['page'] = 1
     return template('dashboard/home', data=config.kargs)
   else:
     return template('login', data=config.kargs)
