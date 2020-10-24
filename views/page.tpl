@@ -74,8 +74,8 @@
         <span>{{data['post'][0][2]}}</span>
         %if 'showEdit' in data:
         <div class="icon-outer">
-          <a class="edit-icon" href="/post/edit/{{data['post'][0][0]}}"><img src="/static/images/edit.png"/></a>
-          <a class="delete-icon" href="/post/delete/{{data['post'][0][0]}}"><img src="/static/images/delete.png"/></a>
+          <a class="edit-icon" href="/page/edit/{{data['post'][0][0]}}"><img src="/static/images/edit.png"/></a>
+          <a class="delete-icon" href="/page/delete/{{data['post'][0][0]}}"><img src="/static/images/delete.png"/></a>
         </div>
         %del data['showEdit']
         %end
@@ -99,4 +99,4 @@
   </section><!--content-->
 </div><!--main-->
 
-%include('./partials/footer.tpl')
+%include('./partials/page-footer.tpl')

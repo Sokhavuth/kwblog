@@ -66,16 +66,16 @@
         %if 'posts' in data:
           %for v in range(len(data['posts'])):
             <div class="post-panel">
-              <a class="post-thumb" ><img src="{{data['thumbs'][v]}}" /></a>
+              <a class="post-thumb" target="_blank" href="/page/{{data['posts'][v][0]}}" ><img src="{{data['thumbs'][v]}}" /></a>
               <div class="title-wrapper">
-                <a class="post-title" >{{data['posts'][v][1]}}</a>
+                <a class="post-title" target="_blank" href="/page/{{data['posts'][v][0]}}" >{{data['posts'][v][1]}}</a>
                 %postdate = data['posts'][v][3].strftime("%d-%m-%Y")
                 <div class="post-date">{{postdate}}</div>
               </div>
               <div class="author-outer">
                 <a class="post-author" href="/author/{{data['posts'][v][2]}}">{{data['posts'][v][2]}}</a>
-                <a href="/category/delete/{{data['posts'][v][0]}}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>
-                <a href="/category/edit/{{data['posts'][v][0]}}"><img title="Edit" src="/static/images/edit.png" /></a>
+                <a href="/page/delete/{{data['posts'][v][0]}}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>
+                <a href="/page/edit/{{data['posts'][v][0]}}"><img title="Edit" src="/static/images/edit.png" /></a>
               </div>
             </div>
           %end
@@ -87,7 +87,7 @@
         <script>
           function paginate(){
             $('#pagination img').attr('src', '/static/images/loading.gif');
-            $.get("/category/paginate", function(data, status){
+            $.get("/page/paginate", function(data, status){
               if((status=='success') && data.json){
                 var posts = data.json;
                 var thumbs = data.thumbs;
@@ -102,8 +102,8 @@
                   html += '</div>';
                   html += `<div class="author-outer">`;
                   html += `<a class="post-author" href="/author/${posts[index][2]}">${posts[index][2]}</a>`;  
-                  html += `<a href="/category/delete/${posts[index][0]}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>`;
-                  html += `<a href="/category/edit/${posts[index][0]}"><img title="Edit" src="/static/images/edit.png" /></a>`;
+                  html += `<a href="/page/delete/${posts[index][0]}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>`;
+                  html += `<a href="/page/edit/${posts[index][0]}"><img title="Edit" src="/static/images/edit.png" /></a>`;
                   html += '</div>';
                   html += '</div>';
                 }
