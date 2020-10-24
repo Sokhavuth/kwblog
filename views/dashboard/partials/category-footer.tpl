@@ -71,12 +71,11 @@
                 <a class="post-title" target="_blank" href="/post/{{data['posts'][v][0]}}">{{data['posts'][v][1]}}</a>
                 %postdate = data['posts'][v][3].strftime("%d-%m-%Y")
                 <div class="post-date">{{postdate}}</div>
-                <a class="post-category">{{data['posts'][v][5]}}</a>
               </div>
               <div class="author-outer">
                 <a class="post-author" href="/author/{{data['posts'][v][2]}}">{{data['posts'][v][2]}}</a>
-                <a href="/post/delete/{{data['posts'][v][0]}}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>
-                <a href="/post/edit/{{data['posts'][v][0]}}"><img title="Edit" src="/static/images/edit.png" /></a>
+                <a href="/category/delete/{{data['posts'][v][0]}}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>
+                <a href="/category/edit/{{data['posts'][v][0]}}"><img title="Edit" src="/static/images/edit.png" /></a>
               </div>
             </div>
           %end
@@ -88,7 +87,7 @@
         <script>
           function paginate(){
             $('#pagination img').attr('src', '/static/images/loading.gif');
-            $.get("/paginate/backEnd", function(data, status){
+            $.get("/category/paginate", function(data, status){
               if((status=='success') && data.json){
                 var posts = data.json;
                 var thumbs = data.thumbs;
@@ -100,7 +99,6 @@
                   html += '<div class="title-wrapper">'
                   html += `<a class="post-title" target="_blank" href="/post/${posts[index][0]}">${posts[index][1]}</a>`;
                   html += `<div class="post-date">${posts[index][3]}</div>`;
-                  html += `<a class="post-category">${posts[index][5]}</a>`;
                   html += '</div>';
                   html += `<div class="author-outer">`;
                   html += `<a class="post-author" href="/author/${posts[index][2]}">${posts[index][2]}</a>`;  

@@ -1,86 +1,102 @@
-#controllers/post.py
+#controllers/category.py
 import config, lib, datetime, uuid
+from pytz import timezone
 from bottle import route, template, request, redirect, response
-from models import postdb
+from models import postdb, categorydb
 
-@route('/post/<id:int>')
+def getTimeZone():
+  khtz = timezone('Asia/Phnom_Penh')
+  date = datetime.datetime.now().astimezone(tz=khtz).strftime('%d-%m-%Y')
+  time = datetime.datetime.now().astimezone(tz=khtz).strftime('%H:%M:%S')
+  return (date, time)
+
+@route('/category')
+def post():
+  config.kargs['blogTitle'] = "ទំព័រ​ជំពូក"
+  config.kargs['posts'] = categorydb.select(config.kargs['dashboardPostLimit'])
+  config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
+  config.kargs['datetime'] = getTimeZone()
+  config.kargs['page'] = 1
+  author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
+  if author:
+    config.kargs['author'] = author
+    config.kargs['showEdit'] = True
+
+  return template('dashboard/category', data=config.kargs)
+
+@route('/category/<id:int>')
 def post(id):
   config.kargs['blogTitle'] = "ទំព័រ​ការផ្សាយ"
-  config.kargs['post'] = postdb.select(1, id)
-  config.kargs['posts'] = postdb.select(config.kargs['frontPagePostLimit'])
+  config.kargs['post'] = categorydb.select(1, id)
+  config.kargs['posts'] = categorydb.select(config.kargs['frontPagePostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
   config.kargs['page'] = 1
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if author:
     config.kargs['showEdit'] = True
 
-  return template('post', data=config.kargs)
+  return template('dashboard/category', data=config.kargs)
 
-@route('/posting', method="POST")
+@route('/categorizing', method="POST")
 def posting():
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
-  if ((author != "Guest") and postdb.check(author)):
+  if ((author != "Guest") and categorydb.check(author)):
     title = request.forms.getunicode('fpost-title')
     if title == "":
       title = "untitled"
 
     postdate = request.forms.getunicode('fpost-date')
     posttime = request.forms.getunicode('fpost-time')
-    category = request.forms.getunicode('fcategory')
     content = request.forms.getunicode('fcontent')
 
     try:
       postdate = datetime.datetime.strptime(postdate, "%d-%m-%Y")
     except ValueError:
       config.kargs['message'] = 'ទំរង់​កាលបរិច្ឆេទ​មិន​ត្រឹមត្រូវ!'
-      return template('dashboard/home', data=config.kargs)
+      return template('dashboard/category', data=config.kargs)
 
     try:
       posttime = datetime.datetime.strptime(posttime, "%H:%M:%S")
     except ValueError:
       config.kargs['message'] = 'ទំរង់​ពេល​វេលា​មិន​ត្រឹមត្រូវ!'
-      return template('dashboard/home', data=config.kargs)
+      return template('dashboard/category', data=config.kargs)
 
     if 'postId' in config.kargs:
       id = config.kargs['postId']
-      postdb.update(title, postdate, posttime, category, content, id)
+      categorydb.update(title, postdate, posttime, content, id)
       del config.kargs['postId']
     else:
-      postdb.insert(str(uuid.uuid4().int), title, author, postdate, posttime, category, content)
+      categorydb.insert(str(uuid.uuid4().int), title, author, postdate, posttime, content)
   
-  redirect('/login')
+  redirect('/category')
 
-@route('/post/delete/<id:int>')
+@route('/category/delete/<id:int>')
 def delete(id):
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if ((author != "Guest") and postdb.check(author)):
-    postdb.delete(id)
+    categorydb.delete(id)
 
-  redirect('/login')
+  redirect('/category')
 
-@route('/post/edit/<id:int>')
+@route('/category/edit/<id:int>')
 def edit(id):
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
-  if ((author != "Guest") and postdb.check(author)):
+  if ((author != "Guest") and categorydb.check(author)):
     config.kargs['blogTitle'] = "ទំព័រ​កែ​តំរូវ"
-    config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
+    config.kargs['posts'] = categorydb.select(config.kargs['dashboardPostLimit'])
     config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
-    config.kargs['post'] = postdb.select(1, id)
+    config.kargs['post'] = categorydb.select(1, id)
     config.kargs['edit'] = True
     config.kargs['postId'] = id
     config.kargs['page'] = 1
-    return template('dashboard/home', data=config.kargs)
+    return template('dashboard/category', data=config.kargs)
   
-  redirect('/login')
+  redirect('/category')
 
-@route('/paginate/<place>')
-def paginate(place):
-  if place == "frontEnd":
-    postLimit = config.kargs['frontPagePostLimit']
-  else:
-    postLimit = config.kargs['dashboardPostLimit']
-
-  posts = postdb.select(postLimit, page=config.kargs['page'])
+@route('/category/paginate')
+def paginate():
+  postLimit = config.kargs['dashboardPostLimit']
+  posts = categorydb.select(postLimit, page=config.kargs['page'])
   
   def toString(post):
     post[3] = post[3].strftime('%d-%m-%Y')
@@ -92,7 +108,7 @@ def paginate(place):
 
     [toString(obj) for obj in posts]
     thumbs = lib.getPostThumbs(posts)
-  
+    print(posts)
     return {'json':posts, 'thumbs':thumbs}
   else:
     return {'json':0}

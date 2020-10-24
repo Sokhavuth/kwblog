@@ -1,7 +1,7 @@
 #main.py
 import os, config, lib
 from bottle import run, route, template
-from controllers import login, post, author
+from controllers import login, post, author, category
 from models import postdb
 from public import setup
 

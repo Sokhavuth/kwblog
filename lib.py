@@ -2,7 +2,7 @@
 from bs4 import BeautifulSoup
 
 def getPostThumbs(posts):
-  postContents = [BeautifulSoup(post[6], "html.parser") for post in posts]
+  postContents = [BeautifulSoup(post[-1], "html.parser") for post in posts]
   images = []
 
   for postContent in postContents:

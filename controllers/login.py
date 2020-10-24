@@ -3,8 +3,7 @@ import config, lib
 from pytz import timezone
 from datetime import datetime 
 from bottle import route, template, request, response, redirect
-from models import userdb
-from models import postdb
+from models import userdb, postdb, categorydb
 
 def checkLogin(username, password):
   if (username == 'Guest') and (password == 'password'):
@@ -52,6 +51,7 @@ def login():
     config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
     config.kargs['datetime'] = getTimeZone()
     config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
+    config.kargs['categories'] = categorydb.select(amount="all")
     config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
     config.kargs['page'] = 1
     return template('dashboard/home', data=config.kargs)
