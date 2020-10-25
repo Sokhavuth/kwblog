@@ -23,10 +23,14 @@ def createTable():
   USERNAME TEXT,
   PASSWORD TEXT,
   RIGHTS TEXT,
-  EMAIL TEXT
+  EMAIL TEXT,
+  PROFILE TEXT
   )'''
 
   cursor.execute(SQL)
+
+  cursor.execute("ALTER TABLE USERS ADD COLUMN IF NOT EXISTS PROFILE TEXT")
+
   cursor.execute("SELECT ID FROM USERS LIMIT 1")
   result = cursor.fetchone()
   conn.commit()
