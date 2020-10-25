@@ -52,7 +52,7 @@ def saveFile():
     return template('dashboard/uploadurl', data=config.kargs)
 
   else:
-    redirect('/upload')
+    redirect('/login')
 
 @route('/login', method="POST")
 def user():

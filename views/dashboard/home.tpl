@@ -41,11 +41,11 @@
 
   #content #bottombar #category{
     min-width: 80px;
-    font:bold 14px/1.5 'Lucida Sans' !important;
+    font:bold 14px/1.5 'Lucida Sans', OdorMeanChey !important;
   }
 
   #content #bottombar #category option{
-    font:bold 14px/1.5 'Lucida Sans' !important;
+    font:bold 14px/1.5 'Lucida Sans', OdorMeanChey !important;
   }
 
   #content .post-time{
