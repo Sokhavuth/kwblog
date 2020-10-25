@@ -2,7 +2,7 @@
 import config, lib, datetime, uuid
 from pytz import timezone
 from bottle import route, template, request, redirect, response
-from models import postdb, categorydb
+from models import categorydb
 
 def getTimeZone():
   khtz = timezone('Asia/Phnom_Penh')
@@ -29,13 +29,14 @@ def post(id):
   config.kargs['blogTitle'] = "ទំព័រ​ការផ្សាយ"
   config.kargs['post'] = categorydb.select(1, id)
   config.kargs['posts'] = categorydb.select(config.kargs['frontPagePostLimit'])
+  print(len(config.kargs['posts']))
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
   config.kargs['page'] = 1
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if author:
     config.kargs['showEdit'] = True
 
-  return template('dashboard/category', data=config.kargs)
+  return template('category', data=config.kargs)
 
 @route('/categorizing', method="POST")
 def posting():
@@ -73,7 +74,7 @@ def posting():
 @route('/category/delete/<id:int>')
 def delete(id):
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
-  if ((author != "Guest") and postdb.check(author)):
+  if ((author != "Guest") and categorydb.check(author)):
     categorydb.delete(id)
 
   redirect('/category')
@@ -93,9 +94,13 @@ def edit(id):
   
   redirect('/category')
 
-@route('/category/paginate')
-def paginate():
-  postLimit = config.kargs['dashboardPostLimit']
+@route('/category/paginate/<place>')
+def paginate(place):
+  if place == "backend":
+    postLimit = config.kargs['dashboardPostLimit']
+  else:
+    postLimit = config.kargs['frontPagePostLimit']
+
   posts = categorydb.select(postLimit, page=config.kargs['page'])
   
   def toString(post):

@@ -93,9 +93,13 @@ def edit(id):
   
   redirect('/page')
 
-@route('/page/paginate')
-def paginate():
-  postLimit = config.kargs['dashboardPostLimit']
+@route('/page/paginate/<place>')
+def paginate(place):
+  if place == 'backend':
+    postLimit = config.kargs['dashboardPostLimit']
+  else:
+    postLimit = config.kargs['frontPagePostLimit']
+
   posts = pagedb.select(postLimit, page=config.kargs['page'])
   
   def toString(post):

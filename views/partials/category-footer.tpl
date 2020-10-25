@@ -57,8 +57,8 @@
         %if 'posts' in data:
           %for v in range(len(data['posts'])):
             <div class="post-outer">
-              <a class="post-thumb" href="/page/{{data['posts'][v][0]}}"><img src="{{data['thumbs'][v]}}" /></a>
-                <a class="post-title" href="/page/{{data['posts'][v][0]}}">{{data['posts'][v][1]}}</a>
+              <a class="post-thumb" href="/category/{{data['posts'][v][0]}}"><img src="{{data['thumbs'][v]}}" /></a>
+                <a class="post-title" href="/category/{{data['posts'][v][0]}}">{{data['posts'][v][1]}}</a>
                 %postdate = data['posts'][v][3].strftime("%d-%m-%Y")
                 <div class="post-date">{{postdate}}</div>
             </div>
@@ -71,7 +71,7 @@
         <script>
           function paginate(){
             $('#pagination img').attr('src', '/static/images/loading.gif');
-            $.get("/page/paginate/frontend", function(data, status){
+            $.get("/category/paginate/frontend", function(data, status){
               if((status=='success') && data.json){
                 var posts = data.json;
                 var thumbs = data.thumbs;
@@ -79,8 +79,8 @@
 
                 for(var index in posts){
                   html += '<div class="post-outer">';
-                  html += `<a class="post-thumb" href="/page/${posts[index][0]}"><img src="${thumbs[index]}" /></a>`;
-                  html += `<a class="post-title" href="/page/${posts[index][0]}">${posts[index][1]}</a>`;
+                  html += `<a class="post-thumb" href="/category/${posts[index][0]}"><img src="${thumbs[index]}" /></a>`;
+                  html += `<a class="post-title" href="/category/${posts[index][0]}">${posts[index][1]}</a>`;
                   html += `<div class="post-date">${posts[index][3]}</div>`;
                   html += '</div>';
                 }
