@@ -42,7 +42,8 @@ def saveFile():
     return 'File extension not allowed.'
 
   upload.filename = str(uuid.uuid4().int) + ext
-  ROOT_DIR = os.path.abspath(os.curdir)
+  ROOT_DIR = os.path.dirname(os.path.abspath("config.py"))
+  print(ROOT_DIR)
   savePath = ROOT_DIR + "/public/images/uploads/"
   config.kargs['uploadUrl'] = "/static/images/uploads/" + upload.filename
   upload.save(savePath)
