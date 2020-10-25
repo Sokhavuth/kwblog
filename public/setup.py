@@ -16,6 +16,10 @@ def server_static(filename):
 @route('/static/images/<filename>')    
 def server_static(filename):
   return static_file(filename, root='./public/images')
+
+@route('/static/images/uploads/<filename>')    
+def server_static(filename):
+  return static_file(filename, root='./public/images/uploads')
    
 @route('/static/fonts/<filename>')    
 def server_static(filename):

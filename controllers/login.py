@@ -1,5 +1,5 @@
 #controllers/login.py
-import config, lib
+import os, config, lib, uuid
 from pytz import timezone
 from datetime import datetime 
 from bottle import route, template, request, response, redirect
@@ -29,6 +29,25 @@ def signup():
   userdb.insert(username, password, rights, email)
 
   redirect('/login')
+
+@route('/upload')
+def upload():
+  return template('dashboard/upload', data=config.kargs)
+
+@route('/upload', method='POST')
+def saveFile():
+  upload = request.files.get('fupload')
+  name, ext = os.path.splitext(upload.filename)
+  if ext not in ('.png','.jpg','.jpeg'):
+    return 'File extension not allowed.'
+
+  upload.filename = str(uuid.uuid4().int) + ext
+
+  savePath = os.getcwd() + "/public/images/uploads/"
+  config.kargs['uploadUrl'] = "/static/images/uploads/" + upload.filename
+  upload.save(savePath)
+
+  return template('dashboard/uploadurl', data=config.kargs)
 
 @route('/login', method="POST")
 def user():
