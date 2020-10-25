@@ -24,12 +24,13 @@ def createTable():
   PASSWORD TEXT,
   RIGHTS TEXT,
   EMAIL TEXT,
-  PROFILE TEXT
+  PROFILE TEXT,
+  GENDER TEXT
   )'''
 
   cursor.execute(SQL)
 
-  cursor.execute("ALTER TABLE USERS ADD COLUMN IF NOT EXISTS PROFILE TEXT")
+  cursor.execute("ALTER TABLE USERS ADD COLUMN IF NOT EXISTS GENDER TEXT")
 
   cursor.execute("SELECT ID FROM USERS LIMIT 1")
   result = cursor.fetchone()
@@ -53,7 +54,7 @@ def insert(*user):
 
     cursor = conn.cursor()
 
-  cursor.execute("INSERT INTO USERS (USERNAME, PASSWORD, RIGHTS, EMAIL) VALUES %s ", (user,))
+  cursor.execute("INSERT INTO USERS (USERNAME, PASSWORD, RIGHTS, EMAIL, PROFILE, GENDER) VALUES %s ", (user,))
   
   conn.commit()
   conn.close()

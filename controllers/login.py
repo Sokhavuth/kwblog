@@ -68,7 +68,7 @@ def login():
   user = userdb.createTable()
   username = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if not user:
-    return template('dashboard/signup', data=config.kargs)
+    return template('dashboard/rootuser', data=config.kargs)
   elif username:
     config.kargs['author'] = username
     config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
