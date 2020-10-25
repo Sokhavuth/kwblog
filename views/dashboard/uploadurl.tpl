@@ -1,4 +1,4 @@
-<!--views/dashboard/upload.tpl-->
+<!--views/dashboard/uploadurl.tpl-->
 <!DOCTYPE html>
 <html>
   <head>
