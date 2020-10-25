@@ -36,8 +36,6 @@ def upload():
 
 @route('/upload', method='POST')
 def saveFile():
-  author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
-  if ((author != "Guest") and postdb.check(author)):
     upload = request.files.get('fupload')
     name, ext = os.path.splitext(upload.filename)
     if ext not in ('.png','.jpg','.jpeg'):
@@ -51,8 +49,7 @@ def saveFile():
 
     return template('dashboard/uploadurl', data=config.kargs)
 
-  else:
-    redirect('/login')
+  
 
 @route('/login', method="POST")
 def user():
