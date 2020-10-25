@@ -36,20 +36,22 @@ def upload():
 
 @route('/upload', method='POST')
 def saveFile():
-    upload = request.files.get('fupload')
-    name, ext = os.path.splitext(upload.filename)
-    if ext not in ('.png','.jpg','.jpeg'):
-      return 'File extension not allowed.'
+  author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
 
-    upload.filename = str(uuid.uuid4().int) + ext
-    ROOT_DIR = os.path.dirname(os.path.abspath("config.py"))
-    savePath = ROOT_DIR + "/public/images/uploads/"
-    config.kargs['uploadUrl'] = "/static/images/uploads/" + upload.filename
+  upload = request.files.get('fupload')
+  name, ext = os.path.splitext(upload.filename)
+  if ext not in ('.png','.jpg','.jpeg'):
+    return 'File extension not allowed.'
+
+  upload.filename = str(uuid.uuid4().int) + ext
+  ROOT_DIR = os.path.dirname(os.path.abspath("config.py"))
+  savePath = ROOT_DIR + "/public/images/uploads/"
+  config.kargs['uploadUrl'] = "/static/images/uploads/" + upload.filename
+  if ((author != "Guest") and postdb.check(author)):
     upload.save(savePath)
-
     return template('dashboard/uploadurl', data=config.kargs)
-
-  
+  else:
+    redirect('/login')
 
 @route('/login', method="POST")
 def user():
