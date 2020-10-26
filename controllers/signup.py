@@ -38,7 +38,7 @@ def signupPost():
   gender = request.forms.getunicode('fgender')
   
   if not user:
-    userdb.insert(username, password, "Admin", email, profile, gender)
+    userdb.insert(str(uuid.uuid4().int), username, password, "Admin", email, profile, gender)
   else:
     if ((author != "Guest") and userdb.checkAdmin(author)):
       if 'postId' in config.kargs:
