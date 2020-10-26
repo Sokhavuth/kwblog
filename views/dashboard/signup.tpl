@@ -39,6 +39,10 @@
     cursor: pointer;
   }
 
+  #content #bottombar #post-author{
+    min-width: 200px;
+  }
+
   #content #bottombar .category{
     min-width: 80px;
     font: 14px/1.75 'Lucida Sans', OdorMeanChey !important;

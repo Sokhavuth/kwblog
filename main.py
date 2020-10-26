@@ -8,6 +8,7 @@ from public import setup
 @route('/')
 def main():
   config.kargs['blogTitle'] = "គេហទំព័រ​ខ្មែរ​អង្គរ"
+  config.kargs['frontPagePostLimit'] = 8
   config.kargs['posts'] = postdb.select(config.kargs['frontPagePostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
   config.kargs['page'] = 1
