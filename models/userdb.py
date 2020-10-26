@@ -18,6 +18,8 @@ def createTable():
 
     cursor = conn.cursor()
 
+  cursor.execute("DROP TABLE USERS;")
+
   SQL = '''CREATE TABLE IF NOT EXISTS USERS(
   ID TEXT,
   USERNAME TEXT,
@@ -29,7 +31,7 @@ def createTable():
   )'''
 
   cursor.execute(SQL)
-  cursor.execute("ALTER TABLE USERS ALTER COLUMN ID TYPE TEXT")
+  
   cursor.execute("SELECT ID FROM USERS LIMIT 1")
   result = cursor.fetchone()
   conn.commit()
