@@ -30,6 +30,7 @@
       <li><img src="/static/images/paging.png" /><a href="/page">បង្កើត​ទំព័រ</a></li>
       <li><img src="/static/images/multimedia.png" /><a target="_blank" href="/upload">ចំលង​ឯកសារ</a></li>
       <li><img src="/static/images/user.png" /><a href="/signup">ចុះ​ឈ្មោះ​​សមាជិក</a></li>
+      <li><img src="/static/images/setting.png" /><a href="#">កំណត់ទំរង់​ដើម</a></li>
     </ul>
   </nav>
 </section><!--sidebar-->

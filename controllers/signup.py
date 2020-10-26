@@ -1,5 +1,5 @@
 #controllers/signup.py
-import config, lib, datetime, uuid
+import config, lib, uuid
 from bottle import route, template, request, redirect
 from models import userdb
 

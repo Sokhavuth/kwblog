@@ -24,6 +24,7 @@
   overflow: hidden;
 }
 .post-panel .post-thumb img{
+  border-radius: 50%;
   width: 100%;
   min-height: 100%;
   float: left;

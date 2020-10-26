@@ -1,4 +1,4 @@
-<!--views/dashboard/home.tpl-->
+<!--views/dashboard/signup.tpl-->
 %include('./dashboard/partials/header.tpl')
 
 <style>
