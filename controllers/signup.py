@@ -14,7 +14,7 @@ def signup():
 @route('/user/<id:int>')
 def post(id):
   config.kargs['blogTitle'] = "ទំព័រសមាជិក"
-  config.kargs['frontPagePostLimit'] = 20
+  config.kargs['frontPagePostLimit'] = 16
   config.kargs['post'] = userdb.select(1, id)
   config.kargs['posts'] = userdb.select(config.kargs['frontPagePostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'], "user")
