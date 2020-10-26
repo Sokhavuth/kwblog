@@ -17,23 +17,14 @@
       <header id="blog-header">
         <div class="region">
           <a href="/login"><img src="/static/images/site_logo.png"/></a>
-          <a id="blog-title" href="/login">{{data['blogTitle']}}</a>
-          <style>
-            #top-menu li{
-              list-style-type: none;
-              display: inline-block;
-              font: 16px/1.5 Bayon;
-              margin: 0 10px;
-            }
-          </style>
-          <ul id="top-menu">
-            <li><a href="#">ការផ្សាយ</a></li>
-            <li><a href="#">​ជំពូក</a></li>
-            <li><a href="#">ទំព័រ</a></li>
-            <li><a href="#">​ឯកសារ</a></li>
-            <li><a href="#">​សមាជិក</a></li>
-          </ul>
-          <a id="log-in" href="/">ចេញ​ក្រៅ</a>
+          <span id="blog-title"><a href="/login">{{data['blogTitle']}}</a></span>
+          <a>
+            <form class="search" action="/search" method="post">
+              <input type="text"  placeholder="Search.." name="query" required>
+              <button type="submit">ស្វែង​រក</button>
+            </form>
+          </a>
+          <span id="log-in"><a href="/">ចេញ​ក្រៅ</a></span>
         </div><!--region-->
       </header>
       <div id="header-border"></div>

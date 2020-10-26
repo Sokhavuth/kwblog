@@ -16,14 +16,14 @@
       <header id="blog-header">
         <div class="region">
           <a href="/"><img src="/static/images/site_logo.png"/></a>
-          <a id="blog-title" href="/">{{data['blogTitle']}}</a>
+          <span id="blog-title"><a href="/">{{data['blogTitle']}}</a></span>
           <a>
             <form class="search" action="/search" method="post">
               <input type="text"  placeholder="Search.." name="query" required>
               <button type="submit">ស្វែង​រក</button>
             </form>
           </a>
-          <a id="log-in" href="/login">ចូលក្នុង</a>
+          <span id="log-in"><a href="/login">ចូលក្នុង</a></span>
         </div><!--region-->
       </header>
       <div id="header-border"></div>
