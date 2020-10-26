@@ -18,7 +18,7 @@ def createTable():
 
     cursor = conn.cursor()
 
-  cursor.execute("DROP TABLE USERS;")
+  cursor.execute("DROP TABLE USERS")
 
   SQL = '''CREATE TABLE IF NOT EXISTS USERS(
   ID TEXT,
