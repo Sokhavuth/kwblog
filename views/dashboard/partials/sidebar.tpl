@@ -29,7 +29,7 @@
       <li><img src="/static/images/categorizing.png" /><a href="/category">បង្កើត​ជំពូក</a></li>
       <li><img src="/static/images/paging.png" /><a href="/page">បង្កើត​ទំព័រ</a></li>
       <li><img src="/static/images/multimedia.png" /><a target="_blank" href="/upload">ចំលង​ឯកសារ</a></li>
-      <li><img src="/static/images/user.png" /><a href="#">បន្ថែម​​សមាជិក</a></li>
+      <li><img src="/static/images/user.png" /><a href="/signup">ចុះ​ឈ្មោះ​​សមាជិក</a></li>
     </ul>
   </nav>
 </section><!--sidebar-->

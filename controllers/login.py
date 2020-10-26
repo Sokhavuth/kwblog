@@ -19,17 +19,6 @@ def getTimeZone():
   time = datetime.now().astimezone(tz=khtz).strftime('%H:%M:%S')
   return (date, time)
 
-@route('/signup', method="POST")
-def signup():
-  username = request.forms.get('fusername')
-  password = request.forms.get('fpassword')
-  rights = request.forms.get('frights')
-  email = request.forms.get('femail')
-
-  userdb.insert(username, password, rights, email)
-
-  redirect('/login')
-
 @route('/upload')
 def upload():
   return template('dashboard/upload', data=config.kargs)
@@ -68,7 +57,7 @@ def login():
   user = userdb.createTable()
   username = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if not user:
-    return template('dashboard/rootuser', data=config.kargs)
+    return template('dashboard/signup', data=config.kargs)
   elif username:
     config.kargs['author'] = username
     config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
