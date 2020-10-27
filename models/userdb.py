@@ -1,5 +1,5 @@
 #models/userdb.py
-import os
+import os, config
 import psycopg2
 
 def createTable(): 
