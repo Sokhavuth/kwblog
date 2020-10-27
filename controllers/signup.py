@@ -1,10 +1,11 @@
 #controllers/signup.py
 import config, lib, uuid
 from bottle import route, template, request, redirect
-from models import userdb
+from models import userdb, settingdb
 
 @route('/signup')
 def signup():
+  config.reset(settingdb.select())
   config.kargs['blogTitle'] = "ទំព័រសមាជិក​"
   config.kargs['posts'] = userdb.select(config.kargs['dashboardPostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'], type="user")
@@ -13,10 +14,10 @@ def signup():
 
 @route('/user/<id:int>')
 def post(id):
+  config.reset(settingdb.select())
   config.kargs['blogTitle'] = "ទំព័រសមាជិក"
-  config.kargs['frontPagePostLimit'] = 16
   config.kargs['post'] = userdb.select(1, id)
-  config.kargs['posts'] = userdb.select(config.kargs['frontPagePostLimit'])
+  config.kargs['posts'] = userdb.select(config.kargs['authorPagePostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'], "user")
   config.kargs['page'] = 1
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
@@ -56,6 +57,7 @@ def signupPost():
 def edit(id):
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if ((author != "Guest") and userdb.checkAdmin(author)):
+    config.reset(settingdb.select())
     config.kargs['blogTitle'] = "ទំព័រ​កែ​តំរូវ"
     config.kargs['posts'] = userdb.select(config.kargs['dashboardPostLimit'])
     config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'], type="user")

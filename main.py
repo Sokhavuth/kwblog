@@ -1,15 +1,14 @@
 #main.py
 import os, config, lib
 from bottle import run, route, template
-from controllers import login, post, author, category, page, signup
-from models import postdb
+from controllers import login, post, category, page, signup, setting
+from models import postdb, settingdb
 from public import setup
 
 @route('/')
 def main():
-  config.kargs['blogTitle'] = "គេហទំព័រ​ខ្មែរ​អង្គរ"
-  config.kargs['frontPagePostLimit'] = 8
-  config.kargs['posts'] = postdb.select(config.kargs['frontPagePostLimit'])
+  config.reset(settingdb.select())
+  config.kargs['posts'] = postdb.select(config.kargs['homePagePostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
   config.kargs['page'] = 1
   return template('home', data=config.kargs)

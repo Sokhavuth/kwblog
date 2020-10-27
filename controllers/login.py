@@ -3,7 +3,7 @@ import os, config, lib, uuid
 from pytz import timezone
 from datetime import datetime 
 from bottle import route, template, request, response, redirect
-from models import userdb, postdb, categorydb
+from models import userdb, postdb, categorydb, settingdb
 
 def checkLogin(username, password):
   if (username == 'Guest') and (password == 'password'):
@@ -59,6 +59,7 @@ def login():
   if not user:
     return template('dashboard/signup', data=config.kargs)
   elif username:
+    config.reset(settingdb.select())
     config.kargs['author'] = username
     config.kargs['blogTitle'] = "ទំព័រ​គ្រប់គ្រង"
     config.kargs['datetime'] = getTimeZone()

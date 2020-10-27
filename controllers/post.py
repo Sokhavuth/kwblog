@@ -1,10 +1,11 @@
 #controllers/post.py
 import config, lib, datetime, uuid
 from bottle import route, template, request, redirect, response
-from models import postdb
+from models import postdb, settingdb
 
 @route('/post/<id:int>')
 def post(id):
+  config.reset(settingdb.select())
   config.kargs['blogTitle'] = "ទំព័រ​ការផ្សាយ"
   config.kargs['post'] = postdb.select(1, id)
   config.kargs['posts'] = postdb.select(config.kargs['frontPagePostLimit'])
@@ -62,6 +63,7 @@ def delete(id):
 def edit(id):
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
   if ((author != "Guest") and postdb.check(author)):
+    config.reset(settingdb.select())
     config.kargs['blogTitle'] = "ទំព័រ​កែ​តំរូវ"
     config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
     config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
