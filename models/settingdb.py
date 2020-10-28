@@ -23,6 +23,8 @@ def connect():
 def createTable(): 
   cursor, conn = connect()
   
+  cursor.execute("DROP TABLE SETTING")
+
   SQL = '''CREATE TABLE IF NOT EXISTS SETTING(
   BLOGTITLE TEXT,
   SECRETKEY TEXT,
@@ -30,7 +32,7 @@ def createTable():
   FRONTPAGEPOSTLIMIT INT,
   HOMEPAGEPOSTLIMIT INT,
   AUTHORPAGEPOSTLIMIT INT,
-  SITEDESCRIPTION TEXT
+  CATEGORYPOSTLIMIT INT
   )'''
 
   cursor.execute(SQL)

@@ -14,10 +14,10 @@ def reset(setting):
   kargs['frontPagePostLimit'] = setting[3]
   kargs['homePagePostLimit'] = setting[4]
   kargs['authorPagePostLimit'] = setting[5]
-  kargs['blogDescription'] = setting[6]
+  kargs['categoryPostLimit'] = setting[6]
 
 if not setting:
-  settingdb.insert('គេហទំព័រ​ខ្មែរអង្គរ', 'h4!#au%8tb_9@oe+c0te=g=u%cfxb8t8fy%7+(gx2+51!t*b+s', 5, 8, 12, 16, 'Description' )
+  settingdb.insert('គេហទំព័រ​ខ្មែរអង្គរ', 'h4!#au%8tb_9@oe+c0te=g=u%cfxb8t8fy%7+(gx2+51!t*b+s', 5, 8, 12, 16, 20 )
   setting = settingdb.select()
   
 reset(setting)
