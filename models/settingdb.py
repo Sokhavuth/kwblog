@@ -22,8 +22,6 @@ def connect():
 
 def createTable(): 
   cursor, conn = connect()
-  
-  cursor.execute("DROP TABLE SETTING")
 
   SQL = '''CREATE TABLE IF NOT EXISTS SETTING(
   BLOGTITLE TEXT,
