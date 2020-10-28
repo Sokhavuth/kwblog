@@ -5,7 +5,7 @@
   background:  lavender;
   padding: 0px;
   box-sizing: border-box;
-  margin: 15px auto;
+  margin: 0 auto;
 }
 .post-panel{
   padding: 15px;
