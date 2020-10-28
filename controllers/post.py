@@ -1,7 +1,7 @@
 #controllers/post.py
 import config, lib, datetime, uuid
 from bottle import route, template, request, redirect, response
-from models import postdb, settingdb
+from models import postdb, settingdb, categorydb
 
 @route('/post/<id:int>')
 def post(id):
@@ -47,7 +47,10 @@ def posting():
       postdb.update(title, postdate, posttime, category, content, id)
       del config.kargs['postId']
     else:
-      postdb.insert(str(uuid.uuid4().int), title, author, postdate, posttime, category, content)
+      id = str(uuid.uuid4().int)
+      postdb.insert(id, title, author, postdate, posttime, category, content)
+
+    redirect('/post/'+str(id))
   
   redirect('/login')
 
@@ -67,6 +70,7 @@ def edit(id):
     config.kargs['blogTitle'] = "ទំព័រ​កែ​តំរូវ"
     config.kargs['posts'] = postdb.select(config.kargs['dashboardPostLimit'])
     config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
+    config.kargs['categories'] = categorydb.select(amount="all")
     config.kargs['post'] = postdb.select(1, id)
     config.kargs['edit'] = True
     config.kargs['postId'] = id
@@ -79,6 +83,8 @@ def edit(id):
 def paginate(place):
   if place == "frontEnd":
     postLimit = config.kargs['frontPagePostLimit']
+  elif place == 'home':
+    postLimit = config.kargs['homePagePostLimit']
   else:
     postLimit = config.kargs['dashboardPostLimit']
 
@@ -99,3 +105,15 @@ def paginate(place):
   else:
     return {'json':0}
   
+@route('/search/<place>', method="POST")
+def search(place):
+  config.reset(settingdb.select())
+  query = request.forms.getunicode('fquery')
+  config.kargs['posts'] = postdb.search(query)
+  config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
+  config.kargs['blogTitle'] = "ទំព័រ​ស្វែង​រក"
+
+  if place == "backend":
+    return template('dashboard/search', data=config.kargs)
+  else:
+    return template('search', data=config.kargs)

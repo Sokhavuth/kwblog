@@ -18,8 +18,8 @@
           <a href="/"><img src="/static/images/site_logo.png"/></a>
           <span id="blog-title"><a href="/">{{data['blogTitle']}}</a></span>
           <a>
-            <form class="search" action="/search" method="post">
-              <input type="text"  placeholder="Search.." name="query" required>
+            <form class="search" action="/search/frontend" method="post">
+              <input type="text"  placeholder="Search.." name="fquery" required>
               <button type="submit">ស្វែង​រក</button>
             </form>
           </a>

@@ -149,3 +149,31 @@ def update(*args):
   
   conn.commit()
   conn.close()
+
+def search(query):
+  createTable()
+
+  if 'DYNO' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+  else: 
+    conn = psycopg2.connect(
+      database="postgres", 
+      user="postgres", 
+      password="sokhavuth", 
+      host="localhost", 
+      port="5432"
+    )
+
+    cursor = conn.cursor()
+  
+  sql = "SELECT * from POST WHERE"
+  sql += " TITLE LIKE '%"+query+"%'"
+  sql += " OR CONTENT LIKE '%"+query+"%'"
+  sql += " ORDER BY POSTDATE DESC, POSTTIME DESC LIMIT 12"
+
+  cursor.execute(sql)
+    
+  result = cursor.fetchall()
+  return result

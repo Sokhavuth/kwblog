@@ -63,9 +63,10 @@ def signupPost():
         userdb.update(username, password, rights, email, profile, gender, id)
         del config.kargs['postId']
       else:
-        userdb.insert(str(uuid.uuid4().int), username, password, rights, email, profile, gender)
+        id = str(uuid.uuid4().int)
+        userdb.insert(id, username, password, rights, email, profile, gender)
 
-      redirect('/signup')
+      redirect('/user/'+str(id))
     
   redirect('/login')
 

@@ -68,7 +68,10 @@ def posting():
       pagedb.update(title, postdate, posttime, content, id)
       del config.kargs['postId']
     else:
-      pagedb.insert(str(uuid.uuid4().int), title, author, postdate, posttime, content)
+      id = str(uuid.uuid4().int)
+      pagedb.insert(id, title, author, postdate, posttime, content)
+
+    redirect('/page/'+str(id))
   
   redirect('/page')
 
