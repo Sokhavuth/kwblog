@@ -68,7 +68,9 @@
       %if 'post' in data:
       <div class='post-header'>
         <div class="post-title">{{data['post'][0][1]}}</div>
+        %if 'showEdit' in data:
         <div class="post-date">Admin</div>
+        %end
       </div>
       <div class="post-author">
         <span>{{data['post'][0][3]}}</span>

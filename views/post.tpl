@@ -71,7 +71,7 @@
         <div class="post-date">{{data['post'][0][3].strftime("%d-%m-%Y")}}</div>
       </div>
       <div class="post-author">
-        <span>{{data['post'][0][2]}}</span>
+        <a href="/author/{{data['post'][0][2]}}">{{data['post'][0][2]}}</a>
         %if 'showEdit' in data:
         <div class="icon-outer">
           <a class="edit-icon" href="/post/edit/{{data['post'][0][0]}}"><img src="/static/images/edit.png"/></a>
