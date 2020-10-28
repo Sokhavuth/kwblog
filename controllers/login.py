@@ -40,7 +40,7 @@ def saveFile():
     upload.save(savePath)
     return template('dashboard/uploadurl', data=config.kargs)
   else:
-    redirect('/login')
+    return '<script>window.close()</script>'
 
 @route('/login', method="POST")
 def user():
