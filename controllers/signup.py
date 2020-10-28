@@ -10,7 +10,6 @@ def signup():
   config.kargs['posts'] = userdb.select(config.kargs['dashboardPostLimit'])
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'], type="user")
   config.kargs['page'] = 1
-  config.kargs['author'] = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
 
   return template('dashboard/signup', data=config.kargs)
 
@@ -82,7 +81,6 @@ def edit(id):
     config.kargs['edit'] = True
     config.kargs['postId'] = id
     config.kargs['page'] = 1
-    config.kargs['author'] = author
     return template('dashboard/signup', data=config.kargs)
   
   redirect('/signup')
@@ -90,8 +88,6 @@ def edit(id):
 @route('/user/delete/<id:int>')
 def delete(id):
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
-  config.kargs['author'] = author
-  
   if ((author != "Guest") and userdb.checkAdmin(author)):
     userdb.delete(id)
     
