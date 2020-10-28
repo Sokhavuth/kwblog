@@ -99,4 +99,4 @@
   </section><!--content-->
 </div><!--main-->
 
-%include('./partials/footer.tpl')
+%include('./partials/post-footer.tpl')

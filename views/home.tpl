@@ -22,4 +22,4 @@
   </section><!--content-->
 </div><!--main-->
 
-%include('./partials/post-footer.tpl')
+%include('./partials/footer.tpl')
