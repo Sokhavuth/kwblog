@@ -73,7 +73,7 @@
                 <div class="post-date">{{data['posts'][v][3]}}</div>
               </div>
               <div class="author-outer">
-                <a class="post-author" >Admin</a>
+                <a class="post-author" href="/author/{{data['author']}}" >Admin</a>
                 <a href="/user/delete/{{data['posts'][v][0]}}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>
                 <a href="/user/edit/{{data['posts'][v][0]}}"><img title="Edit" src="/static/images/edit.png" /></a>
               </div>
@@ -101,7 +101,7 @@
                   html += `<div class="post-date">${posts[index][3]}</div>`;
                   html += '</div>';
                   html += `<div class="author-outer">`;
-                  html += `<a class="post-author" >Admin</a>`;  
+                  html += `<a class="post-author" href="/author/{{data['author']}}">Admin</a>`;  
                   html += `<a href="/user/delete/${posts[index][0]}"><img title="Delete" class="delete" src="/static/images/delete.png" /></a>`;
                   html += `<a href="/user/edit/${posts[index][0]}"><img title="Edit" src="/static/images/edit.png" /></a>`;
                   html += '</div>';
