@@ -171,7 +171,7 @@ def search(query):
   sql = "SELECT * from POST WHERE"
   sql += " TITLE LIKE '%"+query+"%'"
   sql += " OR CONTENT LIKE '%"+query+"%'"
-  sql += " ORDER BY POSTDATE DESC, POSTTIME DESC LIMIT 12"
+  sql += " ORDER BY POSTDATE DESC, POSTTIME DESC LIMIT 20"
 
   cursor.execute(sql)
     
