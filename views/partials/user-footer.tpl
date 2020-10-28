@@ -73,7 +73,7 @@
         <script>
           function paginate(){
             $('#pagination img').attr('src', '/static/images/loading.gif');
-            $.get("/user/paginate/frontEnd", function(data, status){
+            $.get("/user/paginate/author", function(data, status){
               if((status=='success') && data.json){
                 var posts = data.json;
                 var thumbs = data.thumbs;

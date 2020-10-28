@@ -95,6 +95,8 @@ def delete(id):
 def paginate(place):
   if place == "frontEnd":
     postLimit = config.kargs['frontPagePostLimit']
+  elif place == "author":
+    postLimit = config.kargs['authorPagePostLimit']
   else:
     postLimit = config.kargs['dashboardPostLimit']
 
