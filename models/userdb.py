@@ -96,7 +96,8 @@ def checkAdmin(username):
     )
 
     cursor = conn.cursor()
-
+  
+  rights = "h4!#au%8tb_9@oe+c0te=g=u%cfxb8t8fy%7+(gx2+51!t*b+s"
   cursor.execute("SELECT USERNAME, RIGHTS FROM USERS WHERE USERNAME = '"+ username + "' and RIGHTS = 'Admin' LIMIT 1")
 
   result = cursor.fetchone()
@@ -105,7 +106,7 @@ def checkAdmin(username):
   else:
     return False
 
-def select(amount, id=None, page=0):
+def select(amount, id=None, author=0, page=0):
   createTable()
 
   if 'DYNO' in os.environ:
@@ -125,6 +126,8 @@ def select(amount, id=None, page=0):
 
   if id and (amount == 1):
     cursor.execute("SELECT * FROM USERS WHERE ID = '" + str(id) +"'")
+  elif author:
+    cursor.execute("SELECT * FROM USERS WHERE USERNAME = '" + author +"'")
   elif page:
     SQL = "SELECT * FROM USERS ORDER BY CTID DESC OFFSET %s ROWS FETCH NEXT %s ROWS ONLY"
     cursor.execute(SQL, (amount*page, amount))

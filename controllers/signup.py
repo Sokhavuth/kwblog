@@ -26,6 +26,20 @@ def post(id):
 
   return template('user', data=config.kargs)
 
+@route('/author/<name>')
+def post(name):
+  config.reset(settingdb.select())
+  config.kargs['blogTitle'] = "ទំព័រសមាជិក"
+  config.kargs['post'] = userdb.select(1, author=name)
+  config.kargs['posts'] = userdb.select(config.kargs['authorPagePostLimit'])
+  config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'], "user")
+  config.kargs['page'] = 1
+  author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
+  if author:
+    config.kargs['showEdit'] = True
+
+  return template('user', data=config.kargs)
+
 @route('/signup', method="POST")
 def signupPost():
   author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
