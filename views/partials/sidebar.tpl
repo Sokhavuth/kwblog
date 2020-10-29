@@ -25,11 +25,11 @@
 <section id='sidebar' class="sidebar">
   <nav>
     <ul id="sidebar-menu">
-      <li><img src="/static/images/node.png" /><a href="#">Node.js</a></li>
-      <li><img src="/static/images/php.png" /><a href="#">PHP</a></li>
-      <li><img src="/static/images/python.png" /><a href="#">Python</a></li>
-      <li><img src="/static/images/webdesign.png" /><a href="#">Web Design</a></li>
-      <li><img src="/static/images/contact.png" /><a href="#">Contact</a></li>
+      <li><img src="/static/images/node.png" /><a href="/categories/Node.js">Node.js</a></li>
+      <li><img src="/static/images/php.png" /><a href="/categories/PHP">PHP</a></li>
+      <li><img src="/static/images/python.png" /><a href="/categories/Python">Python</a></li>
+      <li><img src="/static/images/webdesign.png" /><a href="categorie/webdesign">Web Design</a></li>
+      <li><img src="/static/images/contact.png" /><a href="/page/162973424271094355769723216160135380596">Contact</a></li>
     </ul>
   </nav>
 </section><!--sidebar-->
