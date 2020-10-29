@@ -28,7 +28,7 @@
       <li><img src="/static/images/node.png" /><a href="/categories/Node.js">Node.js</a></li>
       <li><img src="/static/images/php.png" /><a href="/categories/PHP">PHP</a></li>
       <li><img src="/static/images/python.png" /><a href="/categories/Python">Python</a></li>
-      <li><img src="/static/images/webdesign.png" /><a href="categories/Web Design">Web Design</a></li>
+      <li><img src="/static/images/webdesign.png" /><a href="/categories/Web Design">Web Design</a></li>
       <li><img src="/static/images/contact.png" /><a href="/page/162973424271094355769723216160135380596">Contact</a></li>
     </ul>
   </nav>
