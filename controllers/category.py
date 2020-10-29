@@ -44,6 +44,7 @@ def post(id):
 def category(name):
   config.reset(settingdb.select())
   config.kargs['blogTitle'] = "ទំព័រ​ជំពូក"
+  config.kargs['category'] = name
   config.kargs['posts'] = postdb.select(config.kargs['categoryPostLimit'], category=name)
   config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
   config.kargs['page'] = 1
@@ -118,6 +119,25 @@ def paginate(place):
     postLimit = config.kargs['frontPagePostLimit']
 
   posts = categorydb.select(postLimit, page=config.kargs['page'])
+  
+  def toString(post):
+    post[3] = post[3].strftime('%d-%m-%Y')
+    post[4] = post[4].strftime('%H:%M:%S')
+
+  if posts:
+    config.kargs['page'] += 1
+    posts = [list(obj) for obj in posts ]
+
+    [toString(obj) for obj in posts]
+    thumbs = lib.getPostThumbs(posts)
+    print(posts)
+    return {'json':posts, 'thumbs':thumbs}
+  else:
+    return {'json':0}
+  
+@route('/categories/paginate/<category>')
+def paginate(category):
+  posts = postdb.select(config.kargs['categoryPostLimit'], category=category, page=config.kargs['page'])
   
   def toString(post):
     post[3] = post[3].strftime('%d-%m-%Y')

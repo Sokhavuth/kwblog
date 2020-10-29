@@ -79,6 +79,9 @@ def select(amount, id=None, page=0, category=0):
     cursor.execute(SQL, (amount*page, amount))
   elif category:
     cursor.execute("SELECT * FROM POST WHERE CATEGORY = '" + category +"' ORDER BY POSTDATE DESC, POSTTIME DESC LIMIT " + str(amount))
+  elif category and page:
+    SQL = "SELECT * FROM POST WHERE CATEGORY = '%s' ORDER BY POSTDATE DESC, POSTTIME DESC OFFSET %s ROWS FETCH NEXT %s ROWS ONLY"
+    cursor.execute(SQL, (category, amount*page, amount))
   else:
     cursor.execute("SELECT * FROM POST ORDER BY POSTDATE DESC, POSTTIME DESC LIMIT " + str(amount))
     

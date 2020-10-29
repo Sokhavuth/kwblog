@@ -22,7 +22,7 @@ def connect():
 
 def createTable(): 
   cursor, conn = connect()
-
+  
   SQL = '''CREATE TABLE IF NOT EXISTS SETTING(
   BLOGTITLE TEXT,
   SECRETKEY TEXT,
@@ -71,7 +71,7 @@ def update(*args):
   FRONTPAGEPOSTLIMIT = %s, 
   HOMEPAGEPOSTLIMIT = %s, 
   AUTHORPAGEPOSTLIMIT = %s,
-  SITEDESCRIPTION = %s
+  CATEGORYPOSTLIMIT = %s
    '''
   
   cursor.execute(sql, args)
