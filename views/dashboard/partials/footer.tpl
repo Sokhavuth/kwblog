@@ -71,7 +71,7 @@
                 <a class="post-title" target="_blank" href="/post/{{data['posts'][v][0]}}">{{data['posts'][v][1]}}</a>
                 %postdate = data['posts'][v][3].strftime("%d-%m-%Y")
                 <div class="post-date">{{postdate}}</div>
-                <a class="post-category">{{data['posts'][v][5]}}</a>
+                <a class="post-category" href="/categories/{{data['posts'][v][5]}}">{{data['posts'][v][5]}}</a>
               </div>
               <div class="author-outer">
                 <a class="post-author" href="/author/{{data['posts'][v][2]}}">{{data['posts'][v][2]}}</a>

@@ -44,6 +44,10 @@
     margin-bottom: 20px;
     align-items: center;
   }
+  #content .post-author .author-outer a{
+    display: block;
+    font: 14px/1.5 'Lucida Sans', OdorMeanChey;
+  }
   #content .post-author .icon-outer{
     text-align: right;
   }
@@ -71,7 +75,10 @@
         <div class="post-date">{{data['post'][0][3].strftime("%d-%m-%Y")}}</div>
       </div>
       <div class="post-author">
-        <a href="/author/{{data['post'][0][2]}}">{{data['post'][0][2]}}</a>
+        <div class="author-outer">
+          <a href="/author/{{data['post'][0][2]}}">{{data['post'][0][2]}}</a>
+          <a href="/categories/{{data['post'][0][5]}}">{{data['post'][0][5]}}</a>
+        </div>
         %if 'showEdit' in data:
         <div class="icon-outer">
           <a class="edit-icon" href="/post/edit/{{data['post'][0][0]}}"><img src="/static/images/edit.png"/></a>

@@ -2,7 +2,7 @@
 import config, lib, datetime, uuid
 from pytz import timezone
 from bottle import route, template, request, redirect, response
-from models import categorydb, settingdb
+from models import categorydb, settingdb, postdb
 
 def getTimeZone():
   khtz = timezone('Asia/Phnom_Penh')
@@ -39,6 +39,19 @@ def post(id):
     config.kargs['showEdit'] = True
 
   return template('category', data=config.kargs)
+
+@route('/categories/<name>')
+def category(name):
+  config.reset(settingdb.select())
+  config.kargs['blogTitle'] = "ទំព័រ​ជំពូក"
+  config.kargs['posts'] = postdb.select(config.kargs['categoryPostLimit'], category=name)
+  config.kargs['thumbs'] = lib.getPostThumbs(config.kargs['posts'])
+  config.kargs['page'] = 1
+  author = request.get_cookie("logged-in", secret=config.kargs['secretKey'])
+  if author:
+    config.kargs['showEdit'] = True
+
+  return template('categories', data=config.kargs)
 
 @route('/categorizing', method="POST")
 def posting():

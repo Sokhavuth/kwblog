@@ -55,7 +55,7 @@ def insert(*post):
   conn.commit()
   conn.close()
 
-def select(amount, id=None, page=0):
+def select(amount, id=None, page=0, category=0):
   createTable()
 
   if 'DYNO' in os.environ:
@@ -77,6 +77,8 @@ def select(amount, id=None, page=0):
   elif page:
     SQL = "SELECT * FROM POST ORDER BY POSTDATE DESC, POSTTIME DESC OFFSET %s ROWS FETCH NEXT %s ROWS ONLY"
     cursor.execute(SQL, (amount*page, amount))
+  elif category:
+    cursor.execute("SELECT * FROM POST WHERE CATEGORY = '" + category +"'")
   else:
     cursor.execute("SELECT * FROM POST ORDER BY POSTDATE DESC, POSTTIME DESC LIMIT " + str(amount))
     
