@@ -1,4 +1,4 @@
-<!--views/partials/footer.tpl-->
+<!--views/partials/categories-footer.tpl-->
 <style>
 .footer{
   min-height: 150px;
