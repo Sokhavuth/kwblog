@@ -44,9 +44,9 @@
     margin-bottom: 20px;
     align-items: center;
   }
-  #content .post-author .author-outer a{
+  #content .post-author .author-outer span{
     display: block;
-    font: 14px/1.5 'Lucida Sans', OdorMeanChey;
+    font: bold 14px/1.5 'Lucida Sans', OdorMeanChey;
   }
   #content .post-author .icon-outer{
     text-align: right;
@@ -76,8 +76,8 @@
       </div>
       <div class="post-author">
         <div class="author-outer">
-          <a href="/author/{{data['post'][0][2]}}">{{data['post'][0][2]}}</a>
-          <a href="/categories/{{data['post'][0][5]}}">{{data['post'][0][5]}}</a>
+          <span>ដោយៈ <a href="/author/{{data['post'][0][2]}}">{{data['post'][0][2]}}</a></span>
+          <span>ក្នុង​ជំពូកៈ <a href="/categories/{{data['post'][0][5]}}">{{data['post'][0][5]}}</a></span>
         </div>
         %if 'showEdit' in data:
         <div class="icon-outer">
